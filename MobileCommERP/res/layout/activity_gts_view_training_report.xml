@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightyellow"
+    android:orientation="vertical"
+    android:weightSum="1" >
+
+    <LinearLayout
+         android:id="@+id/list_to_complete_training_linearlist"
+           
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.1"
+        android:background="#C68B00"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:id="@+id/list_to_complete_training_backbtn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:padding="2dp" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/abc_ic_ab_back_mtrl_am_alpha" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/list_to_complete_training_header"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="7"
+            android:gravity="center"
+            android:text="@string/gts_report_view"
+            android:textColor="#000000"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/list_to_complete_training"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.15"
+        android:background="#000"
+        android:orientation="horizontal"
+        android:padding="2dp" >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/gts_view_report_training"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="@string/training"
+                android:textColor="#FFF"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/gts_view_report_customer"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="@string/customer"
+                android:textColor="#FFF"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/gts_view_report_training_place"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="@string/training_place"
+                android:textColor="#FFF"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/gts_view_report_training_date"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="@string/training_duration"
+                android:textColor="#FFF"
+                android:textSize="12sp" />
+        </LinearLayout>
+         
+         <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/gts_view_report_travel_start"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="@string/travel_start"
+                android:textColor="#FFF"
+                android:textSize="12sp" />
+        </LinearLayout>
+         <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/gts_view_report_travel_end"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="@string/travel_end"
+                android:textColor="#FFF"
+                android:textSize="12sp" />
+        </LinearLayout>
+         <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/gts_view_report_status"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="@string/status"
+                android:textColor="#FFF"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        
+    </LinearLayout>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:background="#000000" />
+
+    <ListView
+        android:id="@+id/gts_view_report_list"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.8" >
+    </ListView>
+
+    <TextView
+        android:id="@+id/gts_view_report_noRecord"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"
+        android:text="@string/now_row_found."
+        android:textColor="#000000"
+        android:visibility="gone" >
+    </TextView>
+
+</LinearLayout>

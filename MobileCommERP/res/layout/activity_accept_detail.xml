@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightyellow"
+    android:orientation="vertical"
+    android:weightSum="1" >
+
+    <LinearLayout style="@style/header_linear" >
+
+        <LinearLayout
+            android:id="@+id/detailback"
+            style="@style/back_button_image" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/abc_ic_ab_back_mtrl_am_alpha" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/lblListHeader"
+            style="@style/header_textView"
+            android:text="Accept Detail" />
+
+        <LinearLayout
+            android:id="@+id/senddata"
+            style="@style/linear_submit_button" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/submit"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/acceptdetailhdr"
+        style="@style/second_header_linear" >
+
+        <LinearLayout style="@style/second_header_linear_text" >
+
+            <TextView
+                android:id="@+id/linear2"
+                style="@style/second_header_text"
+                android:text="@string/assettype" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/second_header_linear_text" >
+
+            <TextView
+                android:id="@+id/linear3"
+                style="@style/second_header_text"
+                android:text="@string/category" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/second_header_linear_text" >
+
+            <TextView
+                android:id="@+id/linear4"
+                style="@style/second_header_text"
+                android:text="@string/srno." />
+        </LinearLayout>
+
+        <LinearLayout style="@style/second_header_linear_text" >
+
+            <TextView
+                android:id="@+id/linear5"
+                style="@style/second_header_text"
+                android:text="@string/tagno." />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l6"
+            style="@style/second_header_linear_text" >
+
+            <TextView
+                android:id="@+id/linear6"
+                style="@style/second_header_text"
+                android:text="@string/accept_reject" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l7"
+            style="@style/second_header_linear_text" >
+
+            <TextView
+                style="@style/second_header_text"
+                android:text="@string/remarks" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:background="#000000" />
+
+    <ListView
+        android:id="@+id/listacceptasset"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.8"
+        android:visibility="gone" >
+    </ListView>
+
+    <TextView
+        android:id="@+id/noRecordacceptDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"
+        android:text="@string/now_row_found."
+        android:textColor="#000000"
+        android:visibility="gone" >
+    </TextView>
+
+</LinearLayout>

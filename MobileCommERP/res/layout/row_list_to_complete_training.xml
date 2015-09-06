@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+
+    <TextView
+        android:id="@+id/list_to_complete_training_name"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="@string/training_name"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/list_to_complete_training_location"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="@string/training_location"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/list_to_copmlete_training_start"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="@string/training_start"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/list_to_copmlete_training_end"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="@string/training_end"
+        android:textSize="12sp" />
+
+    <Button
+        android:id="@+id/list_to_copmlete_training_btn"
+        style="@style/linear_submit_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:layout_margin="5dip"
+        android:text="@string/list_to_complete_btn"
+        android:textSize="12sp" />
+
+</LinearLayout>

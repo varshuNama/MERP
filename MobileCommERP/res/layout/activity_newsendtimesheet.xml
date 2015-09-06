@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical"
+    android:weightSum="1" >
+
+    <LinearLayout
+        android:id="@+id/mainHeaderView"
+        style="@style/header_linear" >
+
+        <LinearLayout
+            android:id="@+id/backImg"
+            style="@style/back_button_image" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/abc_ic_ab_back_mtrl_am_alpha" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/lblListHeader"
+            style="@style/header_textView"
+            android:text="@string/generate_timesheet" />
+
+        <LinearLayout
+            android:id="@+id/submitBtn"
+            style="@style/linear_submit_button" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/submit"
+                android:textColor="@color/textcomman_color"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.1"
+        android:gravity="left|center_vertical"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:padding="1dp"
+            android:text="@string/month_year_new"
+            android:textColor="@color/textcomman_color"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textMonth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:padding="2dp"
+            android:text="@string/may_2015"
+            android:textColor="@color/textcomman_color" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:background="@color/blackcolor" />
+
+    <LinearLayout
+        android:id="@+id/newtimetheader"
+        style="@style/second_header_linear" >
+
+        <LinearLayout
+            android:id="@+id/linear1"
+            style="@style/second_header_linear_text" >
+
+            <TextView
+                style="@style/second_header_text"
+                android:text="@string/date" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear2"
+            style="@style/second_header_linear_text" >
+
+            <TextView
+                style="@style/second_header_text"
+                android:text="@string/day" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear3"
+            style="@style/second_header_linear_text" >
+
+            <TextView
+                style="@style/second_header_text"
+                android:text="@string/activity" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear4"
+            style="@style/second_header_linear_text" >
+
+            <TextView
+                style="@style/second_header_text"
+                android:text="@string/description" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear5"
+            style="@style/second_header_linear_text" >
+
+            <TextView
+                style="@style/second_header_text"
+                android:text="@string/da" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear6"
+            style="@style/second_header_linear_text" >
+
+            <TextView
+                style="@style/second_header_text"
+                android:text="@string/leave_holidays" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear7"
+            style="@style/second_header_linear_text" >
+
+            <TextView
+                style="@style/second_header_text"
+                android:text="@string/status" />
+        </LinearLayout>
+    </LinearLayout>
+<View
+        android:layout_width="wrap_content"
+        android:layout_height="0.5dp"
+        android:background="#000000" />
+    <ListView
+        android:id="@+id/listViewTimeSheet"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.7" >
+    </ListView>
+
+    <TextView
+        android:id="@+id/newtextleave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"
+        android:text="@string/textview"
+        android:visibility="gone" >
+    </TextView>
+
+</LinearLayout>
