@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rowLinearHeader"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="horizontal"
+    android:weightSum="7" >
+
+    <TextView
+        android:id="@+id/item1"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="@string/first_may"
+        android:textColor="@color/textcomman_color"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/item2"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="@string/friday"
+        android:textColor="@color/textcomman_color"
+        android:textSize="12sp" />
+
+    <EditText
+        android:id="@+id/item3"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:hint="Project Activity"
+        android:inputType="text"
+        android:maxLength="100"
+        android:textColor="@color/textcomman_color"
+        android:textSize="12sp" />
+
+    <EditText
+        android:id="@+id/item4"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:hint="Project Description"
+        android:inputType="text"
+        android:maxLength="100"
+        android:textColor="@color/textcomman_color"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/item5"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="@string/da"
+        android:textColor="@color/textcomman_color"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/item6"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="@string/leave"
+        android:textColor="@color/textcomman_color"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/item7"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="@string/status"
+        android:textColor="@color/textcomman_color"
+        android:textSize="12sp" />
+
+</LinearLayout>

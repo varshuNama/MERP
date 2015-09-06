@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightyellow"
+    android:scrollbars="none" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical"
+        android:weightSum="1.3" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_weight="0.1"
+            android:text="@string/transferto"
+            android:textColor="@color/blackcolor"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="0.1"
+            android:orientation="horizontal" >
+
+            <RadioGroup
+                android:id="@+id/radioGroupAsset"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight=".7"
+                android:orientation="horizontal" >
+
+                <RadioButton
+                    android:id="@+id/rd_admin"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:button="@null"
+                    android:drawableLeft="@android:drawable/btn_radio"
+                    android:drawablePadding="4dp"
+                    android:text="@string/admin"
+                    android:textColor="@color/textcomman_color"
+                    android:textSize="12sp" />
+
+                <RadioButton
+                    android:id="@+id/rd_emp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:button="@null"
+                    android:checked="true"
+                    android:drawableLeft="@android:drawable/btn_radio"
+                    android:drawablePadding="4dp"
+                    android:text="@string/employee"
+                    android:textColor="@color/textcomman_color"
+                    android:textSize="12sp" />
+            </RadioGroup>
+        </LinearLayout>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:background="@color/input_stroke_color" />
+
+        <TextView
+            android:id="@+id/emp_text"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="0.1"
+            android:text="@string/emp"
+            android:textColor="@color/blackcolor"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <RelativeLayout
+            android:id="@+id/empspin_asset"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/bg_input"
+            android:gravity="center_vertical"
+            android:padding="5dp" >
+
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:padding="4dp"
+                android:layout_alignParentLeft="true"
+                android:src="@drawable/ic_search" />
+
+           
+
+            <AutoCompleteTextView
+                android:id="@+id/empspin"
+                android:layout_width="220dp"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@id/imageView1"
+                android:layout_alignTop="@+id/imageView1"
+                android:layout_marginRight="16dp"
+                android:background="@android:color/transparent"
+                android:ellipsize="end"
+                android:ems="10"
+                android:focusable="true"
+                android:gravity="left|center_vertical"
+                android:hint="Search"
+                android:imeOptions="actionNext"
+                android:popupBackground="@drawable/bg_input_popup"
+                android:singleLine="true"
+                android:textColor="#000000" >
+
+                <requestFocus />
+            </AutoCompleteTextView>
+
+             <ImageView
+                 android:id="@+id/close_btn_emp"
+                 android:layout_width="30dp"
+                 android:layout_height="wrap_content"
+                 android:layout_alignParentRight="true"
+                 android:background="@android:color/transparent"
+                 android:padding="4dp"
+                 android:src="@drawable/close_privacy"
+                 android:visibility="visible" />
+
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/assetview1"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:background="@color/input_stroke_color" />
+
+        <TextView
+            android:id="@+id/empproj1"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10sp"
+            android:layout_weight="0.1"
+            android:text="@string/circle"
+            android:textColor="@color/blackcolor"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+       
+        <LinearLayout
+            android:id="@+id/empprojspinasset"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/bg_input"
+            android:gravity="center_vertical"
+            android:padding="4dp" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:padding="4dp"
+                android:src="@drawable/ic_search" />
+
+            <AutoCompleteTextView
+                android:id="@+id/empcirclespin"
+                android:layout_width="220dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:background="@android:color/transparent"
+                android:ellipsize="end"
+                android:focusable="true"
+                android:gravity="left|center_vertical"
+                android:hint="Search"
+                android:imeOptions="actionNext"
+                android:popupBackground="@drawable/bg_input_popup"
+                android:singleLine="true"
+                android:textColor="#000000" />
+             <ImageView
+                android:id="@+id/close_btn_circle"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:padding="4dp"
+                android:visibility="gone"
+                android:background="@android:color/transparent"
+                android:src="@drawable/close_privacy" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/viewasset2"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:background="@color/input_stroke_color" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10sp"
+            android:layout_weight="0.1"
+            android:singleLine="true"
+            android:text="@string/transferdate"
+            android:textColor="@color/blackcolor"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/datedata"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="0.1"
+            android:background="@drawable/bg_input"
+            android:ems="10"
+            android:focusable="false"
+            android:paddingBottom="4dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="4dp"
+            android:paddingTop="4dp"
+            android:textColor="@color/blackcolor" />
+
+        <View
+            android:id="@+id/viewleaveto"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_marginTop="8sp"
+            android:background="@color/input_stroke_color" />
+
+        <TextView
+            android:id="@+id/leaveToText"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10sp"
+            android:layout_weight="0.1"
+            android:text="@string/assetslist"
+            android:textColor="@color/blackcolor"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="4dp"
+            android:layout_weight="0.1"
+            android:orientation="horizontal" >
+
+            <com.mcerp.assets.MultiSelectionSpinner
+                android:id="@+id/assetslistspin"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/spinselector"
+                android:spinnerMode="dropdown"
+                android:spinnerStyle="@android:style/Widget.Spinner.DropDown" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/leaveToLine"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_marginTop="8sp"
+            android:background="@color/input_stroke_color" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10sp"
+            android:layout_weight="0.1"
+            android:text="@string/remarks"
+            android:textColor="@color/blackcolor"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/reason"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="0.1"
+            android:background="@drawable/bg_input"
+            android:ems="10"
+            android:paddingBottom="4dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="4dp"
+            android:paddingTop="4dp"
+            android:textColor="@color/blackcolor"
+            android:textStyle="bold" >
+        </EditText>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_marginTop="8sp"
+            android:background="@color/input_stroke_color" />
+
+        <Button
+            android:id="@+id/transfer"
+            style="@style/submit_brown_button"
+            android:layout_gravity="center"
+            android:text="@string/tansfer" />
+    </LinearLayout>
+
+</ScrollView>

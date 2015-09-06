@@ -1,0 +1,121 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+
+    <style name="ResultButton" parent="@android:style/Widget.Holo.Button.Borderless.Small">
+        <item name="android:layout_width">0dip</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="ShareButton" parent="@android:style/Widget.Holo.Button.Borderless.Small">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <!-- common submit button -->
+    <style name="submit_brown_button" parent="android:Widget.Button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:background">@drawable/btn_find_bg</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:paddingLeft">21dp</item>
+        <item name="android:paddingRight">21dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/submit_button_text_color</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <!-- submit button  in main header -->
+    <style name="linear_submit_button" parent="android:Widget.Button">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/round</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:layout_weight">0.1</item>
+        <item name="android:padding">2dp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginRight">@dimen/fourdp</item>
+        <item name="android:textColor">@color/submit_button_text_color</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <!-- text center in main header -->
+    <style name="header_textView">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:layout_weight">0.8</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/submit_button_text_color</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <!-- main header linear layout style -->
+    <style name="header_linear">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">0.1</item>
+        <item name="android:background">@color/brown</item>
+        <item name="android:padding">2dp</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+    <!-- Second header main linear layout style -->
+    <style name="second_header_linear">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">0.1</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:background">@color/blackcolor</item>
+        <item name="android:padding">2dp</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+    <!-- use arrow back button in header style for linear layout -->
+    <style name="back_button_image">
+        <item name="android:layout_weight">0.1</item>
+        <item name="android:gravity">left</item>
+        <item name="android:layout_width">40dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">2dp</item>
+    </style>
+    <!-- Second black header used text style -->
+    <style name="second_header_text">
+        <item name="android:gravity">center_vertical|center_horizontal</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:textColor">#FFF</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:padding">2dp</item>
+    </style>
+   
+     <!-- Second black header used text style -->
+    <style name=" textview_list_item">
+        <item name="android:gravity">center_vertical|center_horizontal</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:textColor">#000</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:padding">2dp</item>
+    </style>
+    <!-- Second black header Linear layout style outside the text -->
+    <style name="second_header_linear_text">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+</resources>

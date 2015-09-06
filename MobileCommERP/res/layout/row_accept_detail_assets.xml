@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+
+    <TextView
+        android:id="@+id/acceptdetail1"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="sdhshb"
+        android:textColor="@color/textcomman_color"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/acceptdetail2"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="snbfnsb"
+        android:textColor="@color/textcomman_color"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/acceptdetail3"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="dhfbhsb"
+        android:textColor="@color/textcomman_color"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/acceptdetail4"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="snbdnsbn"
+        android:textColor="@color/textcomman_color"
+        android:textSize="12sp" />
+
+    <LinearLayout
+        android:id="@+id/linear4"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="4dp" >
+
+        <Spinner
+            android:id="@+id/spinner_approve_reject"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/spinselector"
+            android:spinnerMode="dropdown"
+            android:spinnerStyle="@android:style/Widget.Spinner.DropDown"
+            android:textColor="@color/textcomman_color" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/remarks_detail"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:hint="Remarks"
+        android:inputType="text"
+        android:maxLength="100"
+        android:textColor="@color/textcomman_color"
+        android:textSize="12sp" />
+
+</LinearLayout>

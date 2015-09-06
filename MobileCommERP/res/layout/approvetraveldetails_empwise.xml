@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightyellow"
+    android:orientation="vertical"
+    android:weightSum="1" >
+
+    <LinearLayout style="@style/header_linear" >
+
+        <LinearLayout
+            android:id="@+id/backbtntravelempwise"
+            style="@style/back_button_image" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/abc_ic_ab_back_mtrl_am_alpha" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/lblListHeader"
+            style="@style/header_textView"
+            android:text="@string/project_travel_approve" />
+
+        <LinearLayout
+            android:id="@+id/approve__travel_senddata"
+            style="@style/linear_submit_button" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/submit"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/projecthdr"
+        style="@style/second_header_linear" >
+
+        <LinearLayout style="@style/second_header_linear_text" >
+        </LinearLayout>
+
+        <LinearLayout style="@style/second_header_linear_text" >
+
+            <TextView
+                android:id="@+id/approve_travel_details_traveldate"
+                style="@style/second_header_text"
+                android:text="@string/approve_travel_details_traveldate" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/second_header_linear_text" >
+
+            <TextView
+                android:id="@+id/approve_travel_details_location"
+                style="@style/second_header_text"
+                android:text="@string/approve_travel_details_location" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/second_header_linear_text" >
+
+            <TextView
+                android:id="@+id/approve_travel_details_transportmode"
+                style="@style/second_header_text"
+                android:text="@string/approve_travel_details_transportmode" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/second_header_linear_text" >
+
+            <TextView
+                android:id="@+id/approve_travel_details_travelunit"
+                style="@style/second_header_text"
+                android:text="@string/approve_travel_details_travelunit" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/second_header_linear_text" >
+
+            <TextView
+                android:id="@+id/approve_travel_details_unitcast"
+                style="@style/second_header_text"
+                android:text="@string/approve_travel_details_unitcast" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/second_header_linear_text" >
+
+            <TextView
+                android:id="@+id/approve_travel_details_Pm_approve_unit"
+                style="@style/second_header_text"
+                android:text="@string/approve_travel_details_Pm_approve_unit" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l6"
+            style="@style/second_header_linear_text" >
+
+            <TextView
+                android:id="@+id/approve_travel_details_Pm_remarks"
+                style="@style/second_header_text"
+                android:text="@string/approve_travel_details_Pm_remarks" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l7"
+            style="@style/second_header_linear_text" >
+
+            <TextView
+                android:id="@+id/approve_travel_details_Pm_approve"
+                style="@style/second_header_text"
+                android:text="@string/approve_travel_details_Pm_approve" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:background="#000000" />
+
+    <ListView
+        android:id="@+id/listapprove_travel_details"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.8" >
+    </ListView>
+
+    <TextView
+        android:id="@+id/noRecordprojecttravel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"
+        android:text="@string/now_row_found."
+        android:textColor="#000000"
+        android:visibility="gone" >
+    </TextView>
+
+</LinearLayout>
