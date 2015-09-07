@@ -84,10 +84,10 @@ public class Gts_View_Training_Fragment extends Fragment {
 				//String mm = monthSpinner.getSelectedItem().toString();
 				int mPos = monthSpinner.getSelectedItemPosition();
 				String wordmonthSpinner = myMonthlist[mPos];
-				//int year = Calendar.getInstance().get(Calendar.YEAR);
+				/*int year = Calendar.getInstance().get(Calendar.YEAR);
 
-				/*int month = Calendar.getInstance().get(Calendar.MONTH) + 1;
-				if (Integer.parseInt(yyyy) > year || mPos + 1 > month) {
+				int month = Calendar.getInstance().get(Calendar.MONTH) + 1;*/
+				/*if (Integer.parseInt(yyyy) > year || mPos + 1 > month) {
 					Toast.makeText(
 							getActivity(),
 							"Month should not be greater then Current Month",
@@ -103,7 +103,7 @@ public class Gts_View_Training_Fragment extends Fragment {
 					intent.putExtra("empid", empid);
 
 					startActivity(intent);
-				//}
+				/*}*/
 
 			}
 		});
@@ -151,5 +151,15 @@ public class Gts_View_Training_Fragment extends Fragment {
 		gts_view_training_activity_trainer_id.setText(EmpCode);
 
 	}
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
 
+		super.onActivityCreated(savedInstanceState);
+
+		AppPreferences mAppPreferences = AppPreferences
+				.getInstance(getActivity());
+		mAppPreferences
+				.setScreen(com.mcerp.constant.AppConstants.GTSView);
+
+	}
 }

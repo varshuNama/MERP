@@ -3,6 +3,7 @@ package com.mcerp.main;
 import android.app.Activity;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -25,6 +26,7 @@ public class LoginActivity extends Activity implements OnClickListener,OnEditorA
 	TelephonyManager mngrimei;
 	String UserName, Password;
 	AppPreferences prefs;
+	String registration_id;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +38,19 @@ public class LoginActivity extends Activity implements OnClickListener,OnEditorA
 		password.setOnEditorActionListener(this);
 
 	}
+	
+	private void checkAndStroreGCMId(){
+		if (prefs != null && !prefs.getRegistered()){
+			PlayServicesHelper playService = new PlayServicesHelper(LoginActivity.this);
+			registration_id = playService.getRegistrationId();
+			Log.d("Registration id", registration_id);
+			prefs.setGCMRegID(registration_id);
+			}
+		
+	}
 
 	private void initializeVariable() {
+		
 		connectionDetector = new ConnectionDetector(this);
 		submitButton = (Button) findViewById(R.id.btn_submit);
 		user_name = (EditText) findViewById(R.id.username);
@@ -51,6 +64,7 @@ public class LoginActivity extends Activity implements OnClickListener,OnEditorA
 		case R.id.btn_submit:
 			UserName = user_name.getText().toString();
 			Password = password.getText().toString();
+			checkAndStroreGCMId();
 
 			if (!connectionDetector.isConnectingToInternet()) {
 				new SweetAlertDialog(LoginActivity.this,
@@ -69,7 +83,7 @@ public class LoginActivity extends Activity implements OnClickListener,OnEditorA
 					if(usernamearray[1].equals("mcpsinc.com"))
 					{
 						prefs.setFlag(false);
-						new AsyncTaskDataLogin(LoginActivity.this, UserName, Password, "0")
+						new AsyncTaskDataLogin(LoginActivity.this, UserName, Password, "0",prefs.getGCMRegID())
 								.execute();
 					}
 					else{
@@ -89,7 +103,7 @@ public class LoginActivity extends Activity implements OnClickListener,OnEditorA
 			else {
 				UserName=UserName+"@mcpsinc.com"; 
 				prefs.setFlag(false);
-				new AsyncTaskDataLogin(LoginActivity.this, UserName, Password, "0")
+				new AsyncTaskDataLogin(LoginActivity.this, UserName, Password, "0",prefs.getGCMRegID())
 						.execute();
 			}
 

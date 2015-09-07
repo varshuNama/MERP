@@ -388,4 +388,15 @@ public class ApplyLeave extends Fragment implements OnClickListener {
 
 	}
 
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+
+		super.onActivityCreated(savedInstanceState);
+
+		AppPreferences mAppPreferences = AppPreferences
+				.getInstance(getActivity());
+		mAppPreferences
+				.setScreen(com.mcerp.constant.AppConstants.LeaveApplyScreen);
+
+	}
 }

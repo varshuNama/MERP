@@ -81,24 +81,58 @@
             android:textSize="20sp"
             android:textStyle="bold" />
 
-        <LinearLayout
-            android:id="@+id/empspinasset"
+        <RelativeLayout
+            android:id="@+id/empspin_asset"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="4dp"
-            android:layout_weight="0.1"
-            android:orientation="horizontal" >
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/bg_input"
+            android:gravity="center_vertical"
+            android:padding="5dp" >
 
-            <Spinner
-                android:id="@+id/empspin"
-                android:layout_width="fill_parent"
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/spinselector"
-                android:spinnerMode="dropdown"
-                android:spinnerStyle="@android:style/Widget.Spinner.DropDown" />
-        </LinearLayout>
+                android:background="@android:color/transparent"
+                android:padding="4dp"
+                android:layout_alignParentLeft="true"
+                android:src="@drawable/ic_search" />
+
+           
+
+            <AutoCompleteTextView
+                android:id="@+id/empspin"
+                android:layout_width="220dp"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@id/imageView1"
+                android:layout_alignTop="@+id/imageView1"
+                android:layout_marginRight="16dp"
+                android:background="@android:color/transparent"
+                android:ellipsize="end"
+                android:ems="10"
+                android:focusable="true"
+                android:gravity="left|center_vertical"
+                android:hint="Search"
+                android:imeOptions="actionNext"
+                android:popupBackground="@drawable/bg_input_popup"
+                android:singleLine="true"
+                android:textColor="#000000" >
+
+                <requestFocus />
+            </AutoCompleteTextView>
+
+             <ImageView
+                 android:id="@+id/close_btn_emp"
+                 android:layout_width="30dp"
+                 android:layout_height="wrap_content"
+                 android:layout_alignParentRight="true"
+                 android:background="@android:color/transparent"
+                 android:padding="4dp"
+                 android:src="@drawable/close_privacy"
+                 android:visibility="visible" />
+
+        </RelativeLayout>
 
         <View
             android:id="@+id/assetview1"
@@ -118,23 +152,45 @@
             android:textSize="20sp"
             android:textStyle="bold" />
 
+       
         <LinearLayout
             android:id="@+id/empprojspinasset"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="4dp"
-            android:layout_weight="0.1"
-            android:orientation="horizontal" >
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/bg_input"
+            android:gravity="center_vertical"
+            android:padding="4dp" >
 
-            <Spinner
-                android:id="@+id/empcirclespin"
-                android:layout_width="fill_parent"
+            <ImageView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/spinselector"
-                android:spinnerMode="dropdown"
-                android:spinnerStyle="@android:style/Widget.Spinner.DropDown" />
+                android:background="@android:color/transparent"
+                android:padding="4dp"
+                android:src="@drawable/ic_search" />
+
+            <AutoCompleteTextView
+                android:id="@+id/empcirclespin"
+                android:layout_width="220dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:background="@android:color/transparent"
+                android:ellipsize="end"
+                android:focusable="true"
+                android:gravity="left|center_vertical"
+                android:hint="Search"
+                android:imeOptions="actionNext"
+                android:popupBackground="@drawable/bg_input_popup"
+                android:singleLine="true"
+                android:textColor="#000000" />
+             <ImageView
+                android:id="@+id/close_btn_circle"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:padding="4dp"
+                android:visibility="gone"
+                android:background="@android:color/transparent"
+                android:src="@drawable/close_privacy" />
         </LinearLayout>
 
         <View

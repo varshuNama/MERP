@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+
+    <CheckBox
+        android:id="@+id/leave_cancel_checkbox"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="0.5"
+        android:gravity="center" />
+
+    <TextView
+        android:id="@+id/leave_cancel_date"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="@string/date"
+        android:textColor="@color/textcomman_color"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/leave_cancel_day"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="@string/day"
+        android:textColor="@color/textcomman_color"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/leave_cancel_prj_mng"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="@string/project_manager"
+        android:textColor="@color/textcomman_color"
+        android:textSize="12sp" />
+
+    <EditText
+        android:id="@+id/leave_cancel_review"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:inputType="text"
+        android:maxLength="100"
+        android:text="@string/cancelation_review"
+        android:textColor="@color/textcomman_color"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/leave_cancel_project_name"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="@string/projectname"
+        android:textColor="@color/textcomman_color"
+        android:textSize="12sp" />
+
+</LinearLayout>

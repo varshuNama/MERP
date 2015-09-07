@@ -14,17 +14,31 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.mcerp.main.R;
+import com.mcerp.notification.InboxNotificationActivity;
 
 public class MyAdapterpush extends BaseAdapter {
 
 	Activity act;
-	ArrayList<Map<String, String>> arraylist = new ArrayList<Map<String, String>>();
+	//ArrayList<Map<String, String>> arraylist = new ArrayList<Map<String, String>>();
+	String[] arr;
 
-	public MyAdapterpush(FragmentActivity activity,
+	/*public MyAdapterpush(FragmentActivity activity,
 			ArrayList<Map<String, String>> arraylist1) {
 		super();
 		act = activity;
 		arraylist = arraylist1;
+
+	}*/
+
+	public MyAdapterpush(FragmentActivity activity, String[] msg_arr) {
+		arr = msg_arr;
+		act = activity;
+	}
+
+	public MyAdapterpush(InboxNotificationActivity inboxNotificationFragment,
+			String[] msg_arr) {
+		arr = msg_arr;
+		act = inboxNotificationFragment;
 		
 	}
 
@@ -37,7 +51,7 @@ public class MyAdapterpush extends BaseAdapter {
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
-		return arraylist.size();
+		return arr.length;
 	}
 
 	@Override
@@ -65,11 +79,12 @@ public class MyAdapterpush extends BaseAdapter {
 		holder = new ViewHolder();
 		holder.tvmessage = (TextView) row.findViewById(R.id.textmsgpush);
 		row.setTag(holder);
-		if (arraylist.get(position).get("pushMsg") != null) {
+		//if (arraylist.get(position).get("pushMsg") != null) {
 			row.setBackgroundColor((position & 1) == 1 ? Color.WHITE : act
 					.getResources().getColor(R.color.cellback));
-			holder.tvmessage.setText(arraylist.get(position).get("pushMsg"));
-		}
+			//holder.tvmessage.setText(arraylist.get(position).get("pushMsg"));
+			holder.tvmessage.setText(arr[position]);
+		//}
 		return row;
 	}
 }

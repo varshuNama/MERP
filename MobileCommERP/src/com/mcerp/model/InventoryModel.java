@@ -8,8 +8,6 @@ public class InventoryModel implements Serializable{
 	 * 
 	 */
 
-
-
 	private static final long serialVersionUID = 1L;
 	private String AssetStockId;
 	private boolean checkbox_status=false;
@@ -20,7 +18,7 @@ public class InventoryModel implements Serializable{
 	private String assert_barcode;
 	private String AssetIssueDate;
 	private String AcceptStatus;
-	private String remarks;
+	private String remarks="";
 
 	public String getRemarks() {
 		return remarks;

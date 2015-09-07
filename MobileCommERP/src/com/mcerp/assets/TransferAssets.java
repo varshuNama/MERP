@@ -21,13 +21,15 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
-import android.widget.Spinner;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import cn.pedant.SweetAlert.SweetAlertDialog;
@@ -50,17 +52,18 @@ public class TransferAssets extends Fragment {
 	EditText dateData, reason;
 	int mYear, mMonth, mDay;
 	String[] strCircle, strEmpName, strAssetsList;
-	Spinner empspin, empcirclespin;
+	AutoCompleteTextView empcirclespin;
+	AutoCompleteTextView emp_autotext;
 	MultiSelectionSpinner assetlistSpin;
 	SweetAlertDialog pDDialog, mydialog2;
 	AppPreferences prefs;
 	Button transfer_btn;
+	ImageView img_close_emp, img_close_circle;
 	String myresult;
 	ConnectionDetector connection;
 	String data1, data2, data3, data4;
-	int flag=0;
-
-	
+	int flag = 0;
+	RelativeLayout empspin_asset;
 	ArrayList<TransferAssetsModel> reportdata1, reportdata2, reportdata3,
 			reportdata4;
 	ArrayList<String> arrayAssetID;
@@ -70,7 +73,7 @@ public class TransferAssets extends Fragment {
 	ArrayList<String> arrayAssetDetailId;
 	ArrayList<String> arrayAssetIssueId;
 	ArrayList<String> arrayAssetStockId;
-	
+
 	NavigationActivity act;
 	String emp_select, asset_select, date_select, remarks_select,
 			circle_select, ciecleid_select, transferkeyid, ProjMgrEmail,
@@ -166,22 +169,24 @@ public class TransferAssets extends Fragment {
 		view1 = con.findViewById(R.id.viewasset2);
 		emp = (TextView) con.findViewById(R.id.emp_text);
 		empproj = (TextView) con.findViewById(R.id.empproj1);
+		img_close_emp = (ImageView) con.findViewById(R.id.close_btn_emp);
+		img_close_circle = (ImageView) con.findViewById(R.id.close_btn_circle);
 		rdgroup = (RadioGroup) con.findViewById(R.id.radioGroupAsset);
 		rd_admin = (RadioButton) con.findViewById(R.id.rd_admin);
 		rd_emp = (RadioButton) con.findViewById(R.id.rd_emp);
 		reason = (EditText) con.findViewById(R.id.reason);
-		empspin = (Spinner) con.findViewById(R.id.empspin);
-		empcirclespin = (Spinner) con.findViewById(R.id.empcirclespin);
+		empspin_asset=(RelativeLayout) con.findViewById(R.id.empspin_asset);
+		emp_autotext = (AutoCompleteTextView) con.findViewById(R.id.empspin);
+		empcirclespin = (AutoCompleteTextView) con
+				.findViewById(R.id.empcirclespin);
 		assetlistSpin = (MultiSelectionSpinner) con
 				.findViewById(R.id.assetslistspin);
 		prefs = AppPreferences.getInstance(act);
-	
-		
 
 		dateData = (EditText) con.findViewById(R.id.datedata);
 		reason.setText("");
 		dateData.setText("");
-		
+
 		final SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy",
 				Locale.getDefault());
 		dateData.setOnClickListener(new OnClickListener() {
@@ -246,12 +251,12 @@ public class TransferAssets extends Fragment {
 
 			@Override
 			public void onClick(View v) {
-				 arrayAssetID = new ArrayList<String>();
-				 arrayAssetDesc = new ArrayList<String>();
-				 assetsmasnjaArray = new ArrayList<String>();
-				 assetsIdArray = new ArrayList<String>();
-				emp_select = empspin.getSelectedItem().toString();
-				circle_select = empcirclespin.getSelectedItem().toString();
+				arrayAssetID = new ArrayList<String>();
+				arrayAssetDesc = new ArrayList<String>();
+				assetsmasnjaArray = new ArrayList<String>();
+				assetsIdArray = new ArrayList<String>();
+				// emp_select = empspin.getSelectedItem().toString();
+				// circle_select = empcirclespin.getSelectedItem().toString();
 				remarks_select = reason.getText().toString();
 				for (int i = 0; i < reportdata4.size(); i++) {
 					if (circle_select
@@ -285,7 +290,7 @@ public class TransferAssets extends Fragment {
 				for (int i = 0; i < assetsArray.size(); i++) {
 					assetsmasnjaArray.add(assetsArray.get(i).trim());
 				}
-				
+
 				for (int i = 0; i < assetsmasnjaArray.size(); i++) {
 					for (int j = 0; j < reportdata1.size(); j++) {
 						if (assetsmasnjaArray
@@ -299,30 +304,28 @@ public class TransferAssets extends Fragment {
 					}
 				}
 
-				if(flag==0)
-				      {
-					
-							if (assetsIdArray.size() > 0 && assetsIdArray != null
-									&& assetsArray.size() > 0 && assetsArray != null) {
-			
-								new AsyncSendDataTransferAssetsToEmployee().execute();
-							} else {
-								Toast.makeText(act, "Please Select Assets .",
-										Toast.LENGTH_LONG).show();
-							}
+				if (flag == 0) {
 
-			}else if(flag==1){
-				if (assetsIdArray.size() > 0 && assetsIdArray != null
-						&& assetsArray.size() > 0 && assetsArray != null) {
+					if (assetsIdArray.size() > 0 && assetsIdArray != null
+							&& assetsArray.size() > 0 && assetsArray != null) {
 
-					new AsyncSendDataTransferAssetsToAdmin().execute();
-				} else {
-					Toast.makeText(act, "Please Select Assets .",
-							Toast.LENGTH_LONG).show();
+						new AsyncSendDataTransferAssetsToEmployee().execute();
+					} else {
+						Toast.makeText(act, "Please Select Assets .",
+								Toast.LENGTH_LONG).show();
+					}
+
+				} else if (flag == 1) {
+					if (assetsIdArray.size() > 0 && assetsIdArray != null
+							&& assetsArray.size() > 0 && assetsArray != null) {
+
+						new AsyncSendDataTransferAssetsToAdmin().execute();
+					} else {
+						Toast.makeText(act, "Please Select Assets .",
+								Toast.LENGTH_LONG).show();
+					}
+
 				}
-
-				
-			}
 			}
 		});
 
@@ -347,19 +350,30 @@ public class TransferAssets extends Fragment {
 	public void BindDataInSpinner(NavigationActivity activity) {
 
 		/******************* Employee Name List *******************/
-		ArrayAdapter<String> adapter_emp = new ArrayAdapter<String>(activity,
-				android.R.layout.simple_spinner_item, strEmpName);
-		adapter_emp
-				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		empspin.setAdapter(adapter_emp);
-		empspin.setSelection(0);
+		if (!isEmpty(emp_autotext)) {
+			img_close_emp.setVisibility(View.VISIBLE);
+		}
+		emp_autotext.setAdapter(new ArrayAdapter<String>(activity,
+				android.R.layout.simple_dropdown_item_1line, strEmpName));
+		emp_autotext.setThreshold(1);
 
 		/******************* Circle List *******************/
-		ArrayAdapter<String> adapter_emp_proj = new ArrayAdapter<String>(
-				activity, android.R.layout.simple_spinner_item, strCircle);
 
-		empcirclespin.setAdapter(adapter_emp_proj);
-		empcirclespin.setSelection(0);
+		if (img_close_emp.getVisibility() == View.VISIBLE) {
+			img_close_emp.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					emp_autotext.setText("");
+
+				}
+			});
+
+		}
+
+		empcirclespin.setAdapter(new ArrayAdapter<String>(activity,
+				android.R.layout.simple_dropdown_item_1line, strCircle));
+		empcirclespin.setThreshold(1);
 
 		/***************** Assets List ***************/
 
@@ -371,21 +385,16 @@ public class TransferAssets extends Fragment {
 			public void onCheckedChanged(RadioGroup group, int checkedId) {
 				if (checkedId == R.id.rd_admin) {
 					view0.setVisibility(View.GONE);
-					view1.setVisibility(View.GONE);
 					emp.setVisibility(View.GONE);
-					empproj.setVisibility(View.VISIBLE);
-					empspin.setVisibility(View.GONE);
-					empcirclespin.setVisibility(View.VISIBLE);
-					flag=1;
+					empspin_asset.setVisibility(View.GONE);
+					flag = 1;
 
 				} else if (checkedId == R.id.rd_emp) {
 					view0.setVisibility(View.VISIBLE);
-					view1.setVisibility(View.VISIBLE);
+					empspin_asset.setVisibility(View.VISIBLE);
 					emp.setVisibility(View.VISIBLE);
-					empproj.setVisibility(View.VISIBLE);
-					empspin.setVisibility(View.VISIBLE);
-					empcirclespin.setVisibility(View.VISIBLE);
-					flag=0;
+
+					flag = 0;
 
 				}
 
@@ -393,7 +402,7 @@ public class TransferAssets extends Fragment {
 		});
 	}
 
-	/******************************Assets Transfer To Employee****************************************/
+	/****************************** Assets Transfer To Employee ****************************************/
 
 	public class AsyncSendDataTransferAssetsToEmployee extends
 			AsyncTask<String, String, String> {
@@ -401,8 +410,8 @@ public class TransferAssets extends Fragment {
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
-			pDDialog = new SweetAlertDialog(act,
-					SweetAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+			pDDialog = new SweetAlertDialog(act, SweetAlertDialog.PROGRESS_TYPE)
+					.setTitleText("Loading");
 			pDDialog.show();
 
 		}
@@ -449,24 +458,24 @@ public class TransferAssets extends Fragment {
 							.setConfirmClickListener(
 									new SweetAlertDialog.OnSweetClickListener() {
 										@Override
-										public void onClick(SweetAlertDialog sDialog) {
-											new AsyncTaskTransferAssets(act).execute();
+										public void onClick(
+												SweetAlertDialog sDialog) {
+											new AsyncTaskTransferAssets(act)
+													.execute();
 											mydialog2.dismiss();
 										}
 									});
 					mydialog2.show();
 
 				} else if (result.equals("fail")) {
-					new SweetAlertDialog(act,
-							SweetAlertDialog.NORMAL_TYPE)
+					new SweetAlertDialog(act, SweetAlertDialog.NORMAL_TYPE)
 							.setTitleText("Oops...").setContentText(myresult)
 							.show();
 					pDDialog.dismiss();
 
 				} else if (!connection.isConnectingToInternet()) {
 
-					new SweetAlertDialog(act,
-							SweetAlertDialog.ERROR_TYPE)
+					new SweetAlertDialog(act, SweetAlertDialog.ERROR_TYPE)
 							.setTitleText("Oops...")
 							.setContentText(
 									"Internet Connection not available!")
@@ -474,8 +483,7 @@ public class TransferAssets extends Fragment {
 					pDDialog.dismiss();
 				} else {
 
-					new SweetAlertDialog(act,
-							SweetAlertDialog.ERROR_TYPE)
+					new SweetAlertDialog(act, SweetAlertDialog.ERROR_TYPE)
 							.setTitleText("Oops...")
 							.setContentText("Does not get Proper Response !")
 							.show();
@@ -488,97 +496,113 @@ public class TransferAssets extends Fragment {
 
 		}
 	}
-/***********************************Assets Transfer To Admin***********************************/
+
+	/*********************************** Assets Transfer To Admin ***********************************/
 	public class AsyncSendDataTransferAssetsToAdmin extends
-	AsyncTask<String, String, String> {
+			AsyncTask<String, String, String> {
 
-@Override
-protected void onPreExecute() {
-	super.onPreExecute();
-	pDDialog = new SweetAlertDialog(act,
-			SweetAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
-	pDDialog.show();
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			pDDialog = new SweetAlertDialog(act, SweetAlertDialog.PROGRESS_TYPE)
+					.setTitleText("Loading");
+			pDDialog.show();
 
-}
-
-@Override
-protected String doInBackground(String... params) {
-	String message = null, response = null;
-	try {
-
-		response = MethodSoap.SendDataTransferAssetsToAdmin(prefs.getUserID(),
-				prefs.getEmpCode(), prefs.getEmpName(),
-				prefs.getUserName(), ciecleid_select, date_select,
-				remarks_select, circle_select, transferkeyid, ProjCode, ProjName, ProjMgrCode,
-				ProjMgrEmail, ProjMgrName, assetsmasnjaArray,
-				assetsIdArray);
-
-		JSONObject jsonobj = new JSONObject(response);
-		message = jsonobj.getString("message");
-		myresult = jsonobj.getString("DataArr");
-
-	} catch (Exception e) {
-		e.printStackTrace();
-		pDDialog.dismiss();
-		return message;
-	}
-
-	return message;
-
-}
-
-protected void onPostExecute(String result) {
-	super.onPostExecute(result);
-	try {
-		if (!result.equals("") && !result.equals("null")
-				&& result.equals("Success")) {
-
-			pDDialog.dismiss();
-			mydialog2 = new SweetAlertDialog(act,
-					SweetAlertDialog.SUCCESS_TYPE)
-					.setTitleText("Successfully")
-					.setContentText(myresult)
-					.setConfirmText("ok")
-					.setConfirmClickListener(
-							new SweetAlertDialog.OnSweetClickListener() {
-								@Override
-								public void onClick(SweetAlertDialog sDialog) {
-									new AsyncTaskTransferAssets(act).execute();
-									mydialog2.dismiss();
-								}
-							});
-			mydialog2.show();
-
-		} else if (result.equals("fail")) {
-			new SweetAlertDialog(act,
-					SweetAlertDialog.NORMAL_TYPE)
-					.setTitleText("Oops...").setContentText(myresult)
-					.show();
-			pDDialog.dismiss();
-
-		} else if (!connection.isConnectingToInternet()) {
-
-			new SweetAlertDialog(act,
-					SweetAlertDialog.ERROR_TYPE)
-					.setTitleText("Oops...")
-					.setContentText(
-							"Internet Connection not available!")
-					.show();
-			pDDialog.dismiss();
-		} else {
-
-			new SweetAlertDialog(act,
-					SweetAlertDialog.ERROR_TYPE)
-					.setTitleText("Oops...")
-					.setContentText("Does not get Proper Response !")
-					.show();
-			pDDialog.dismiss();
 		}
-	} catch (Exception e) {
-		e.printStackTrace();
-		pDDialog.dismiss();
+
+		@Override
+		protected String doInBackground(String... params) {
+			String message = null, response = null;
+			try {
+
+				response = MethodSoap.SendDataTransferAssetsToAdmin(
+						prefs.getUserID(), prefs.getEmpCode(),
+						prefs.getEmpName(), prefs.getUserName(),
+						ciecleid_select, date_select, remarks_select,
+						circle_select, transferkeyid, ProjCode, ProjName,
+						ProjMgrCode, ProjMgrEmail, ProjMgrName,
+						assetsmasnjaArray, assetsIdArray);
+
+				JSONObject jsonobj = new JSONObject(response);
+				message = jsonobj.getString("message");
+				myresult = jsonobj.getString("DataArr");
+
+			} catch (Exception e) {
+				e.printStackTrace();
+				pDDialog.dismiss();
+				return message;
+			}
+
+			return message;
+
+		}
+
+		protected void onPostExecute(String result) {
+			super.onPostExecute(result);
+			try {
+				if (!result.equals("") && !result.equals("null")
+						&& result.equals("Success")) {
+
+					pDDialog.dismiss();
+					mydialog2 = new SweetAlertDialog(act,
+							SweetAlertDialog.SUCCESS_TYPE)
+							.setTitleText("Successfully")
+							.setContentText(myresult)
+							.setConfirmText("ok")
+							.setConfirmClickListener(
+									new SweetAlertDialog.OnSweetClickListener() {
+										@Override
+										public void onClick(
+												SweetAlertDialog sDialog) {
+											new AsyncTaskTransferAssets(act)
+													.execute();
+											mydialog2.dismiss();
+										}
+									});
+					mydialog2.show();
+
+				} else if (result.equals("fail")) {
+					new SweetAlertDialog(act, SweetAlertDialog.NORMAL_TYPE)
+							.setTitleText("Oops...").setContentText(myresult)
+							.show();
+					pDDialog.dismiss();
+
+				} else if (!connection.isConnectingToInternet()) {
+
+					new SweetAlertDialog(act, SweetAlertDialog.ERROR_TYPE)
+							.setTitleText("Oops...")
+							.setContentText(
+									"Internet Connection not available!")
+							.show();
+					pDDialog.dismiss();
+				} else {
+
+					new SweetAlertDialog(act, SweetAlertDialog.ERROR_TYPE)
+							.setTitleText("Oops...")
+							.setContentText("Does not get Proper Response !")
+							.show();
+					pDDialog.dismiss();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+				pDDialog.dismiss();
+			}
+
+		}
 	}
 
-}
-}
+	private boolean isEmpty(EditText etText) {
+		return etText.getText().toString().trim().length() == 0;
+	}
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+
+		super.onActivityCreated(savedInstanceState);
+
+		AppPreferences mAppPreferences = AppPreferences
+				.getInstance(getActivity());
+		mAppPreferences
+				.setScreen(com.mcerp.constant.AppConstants.AssetsTransfer);
+
+	}
 }

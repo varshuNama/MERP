@@ -18,7 +18,7 @@
              android:padding="4dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Released Date: 20-08-2015"
+            android:text="Released Date: 03-08-2015"
             android:textColor="#000000" />
     </LinearLayout>
     <LinearLayout

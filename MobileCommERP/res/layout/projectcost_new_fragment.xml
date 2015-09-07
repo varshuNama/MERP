@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightyellow"
+    android:scrollbars="none" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical"
+        android:weightSum="1" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/zerodp"
+            android:layout_marginLeft="@dimen/tendp"
+            android:layout_marginTop="@dimen/tendp"
+            android:layout_weight="0.1"
+            android:text="@string/project_status"
+            android:textColor="@color/blackcolor"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/twentydp"
+            android:layout_weight="0.2"
+            android:orientation="horizontal"
+            android:padding="4dp" >
+
+            <RadioGroup
+                android:id="@+id/radioGroupProjectCost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight=".7"
+                android:orientation="horizontal" >
+
+                <RadioButton
+                    android:id="@+id/rd_active"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:button="@null"
+                    android:checked="true"
+                    android:drawableLeft="@android:drawable/btn_radio"
+                    android:drawablePadding="4dp"
+                    android:text="@string/active"
+                    android:textColor="@color/textcomman_color"
+                    android:textSize="14sp" />
+
+                <RadioButton
+                    android:id="@+id/rd_closed"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:button="@null"
+                    android:drawableLeft="@android:drawable/btn_radio"
+                    android:drawablePadding="4dp"
+                    android:text="@string/closed"
+                    android:textColor="@color/textcomman_color"
+                    android:textSize="14sp" />
+            </RadioGroup>
+        </LinearLayout>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:background="@color/input_stroke_color" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10sp"
+            android:layout_weight="0.1"
+            android:text="@string/active_project"
+            android:textColor="@color/textcomman_color"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+       
+  <RelativeLayout
+            android:id="@+id/empspin_asset"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/bg_input"
+            android:gravity="center_vertical"
+            android:padding="5dp" >
+
+            <AutoCompleteTextView
+                android:id="@+id/spinnerActive"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="4dp"
+                android:background="@android:color/transparent"
+                android:ellipsize="end"
+                android:ems="10"
+                android:focusable="true"
+                android:gravity="left|center_vertical"
+                android:hint="Search"
+                android:imeOptions="actionDone"
+                android:popupBackground="@drawable/bg_input_popup"
+                android:singleLine="true"
+                android:textColor="#000000" >
+
+                <requestFocus />
+            </AutoCompleteTextView>
+
+             <ImageView
+                 android:id="@+id/cloase_btn_active"
+                 android:layout_width="30dp"
+                 android:layout_height="wrap_content"
+                 android:layout_alignParentRight="true"
+                 android:background="@android:color/transparent"
+                 android:padding="4dp"
+                 android:src="@drawable/close_privacy"
+                 android:visibility="visible" />
+
+        </RelativeLayout>
+        <View
+            android:id="@+id/viewhalf"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:background="@color/input_stroke_color" />
+
+        <TextView
+            android:id="@+id/texthalf"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10sp"
+            android:layout_weight="0.1"
+            android:text="@string/closed_project"
+            android:textColor="@color/textcomman_color"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+  <RelativeLayout
+            android:id="@+id/linearhalf"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/bg_input"
+            android:gravity="center_vertical"
+            android:padding="5dp" >
+
+            <AutoCompleteTextView
+                android:id="@+id/spinnerClosed"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="4dp"
+                android:background="@android:color/transparent"
+                android:ellipsize="end"
+                android:ems="10"
+                android:focusable="true"
+                android:gravity="left|center_vertical"
+                android:hint="Search"
+                android:imeOptions="actionDone"
+                android:popupBackground="@drawable/bg_input_popup"
+                android:singleLine="true"
+                android:textColor="#000000" >
+
+                <requestFocus />
+            </AutoCompleteTextView>
+
+             <ImageView
+                 android:id="@+id/close_btn_closed"
+                 android:layout_width="30dp"
+                 android:layout_height="wrap_content"
+                 android:layout_alignParentRight="true"
+                 android:background="@android:color/transparent"
+                 android:padding="4dp"
+                 android:src="@drawable/close_privacy"
+                 android:visibility="visible" />
+
+        </RelativeLayout>
+        <View
+            android:id="@+id/leaveToLine"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_marginTop="8sp"
+            android:background="@color/input_stroke_color" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.1"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="4dp" >
+
+            <TextView
+                android:id="@+id/text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".3"
+                android:gravity="center"
+                android:text="@string/for_the_month"
+                android:textColor="@color/textcomman_color"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/text_cost_month"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".3"
+                android:gravity="center"
+                android:text="mnmnmnmg"
+                android:textColor="@color/textcomman_color"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/text_cost_year"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".3"
+                android:gravity="center"
+                android:text="2017"
+                android:textColor="@color/textcomman_color"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_marginTop="8sp"
+            android:background="@color/input_stroke_color" />
+
+        <Button
+            android:id="@+id/project_cost_submit"
+            style="@style/submit_brown_button"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:text="@string/submit"
+            android:textColor="@color/textcomman_color" />
+    </LinearLayout>
+
+</ScrollView>

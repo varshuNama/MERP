@@ -47,7 +47,7 @@ public class NewTimesheetAdapter extends ArrayAdapter<NewTimesheetModel> {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		final ViewHolder viewHolder;
 		if (convertView == null) {
-			
+
 			viewHolder = new ViewHolder();
 			LayoutInflater inflator = context.getLayoutInflater();
 
@@ -79,21 +79,19 @@ public class NewTimesheetAdapter extends ArrayAdapter<NewTimesheetModel> {
 		viewHolder.txtday.setText(arraylist.get(position).getTimsheetWeekDay());
 		viewHolder.txtleave.setText(arraylist.get(position).getLHStatus());
 		viewHolder.txtstatus.setText(arraylist.get(position).getTSStatusDesc());
-		
+
 		viewHolder.activity.addTextChangedListener(new TextWatcher() {
 
 			@Override
-			public void onTextChanged(CharSequence arg0, int arg1,
-					int arg2, int arg3) {
-				// TODO Auto-generated method stub
-
+			public void onTextChanged(CharSequence arg0, int arg1, int arg2,
+					int arg3) {
+		
 			}
 
 			@Override
 			public void beforeTextChanged(CharSequence arg0, int arg1,
 					int arg2, int arg3) {
-				// TODO Auto-generated method stub
-
+				
 			}
 
 			@Override
@@ -106,16 +104,14 @@ public class NewTimesheetAdapter extends ArrayAdapter<NewTimesheetModel> {
 		viewHolder.descp.addTextChangedListener(new TextWatcher() {
 
 			@Override
-			public void onTextChanged(CharSequence arg0, int arg1,
-					int arg2, int arg3) {
-				// TODO Auto-generated method stub
+			public void onTextChanged(CharSequence arg0, int arg1, int arg2,
+					int arg3) {
 
 			}
 
 			@Override
 			public void beforeTextChanged(CharSequence arg0, int arg1,
 					int arg2, int arg3) {
-				// TODO Auto-generated method stub
 
 			}
 

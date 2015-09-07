@@ -26,7 +26,7 @@ import com.mcerp.util.AppPreferences;
 
 public class NewSendTimesheet extends Activity implements OnClickListener {
 	String responseData, Message = null, responsesubmitdata;
-	LinearLayout backimg, newtimetheader, SubmitBtn;
+	LinearLayout backimg, newtimetheader, SubmitBtn,SaveBtn;
 	ListView listview;
 	String monthname;
 	TextView norecord, textMonthName, textEmpName, textProjectMgr;
@@ -77,6 +77,7 @@ public class NewSendTimesheet extends Activity implements OnClickListener {
 		listview = (ListView) findViewById(R.id.listViewTimeSheet);
 		textMonthName = (TextView) findViewById(R.id.textMonth);
 		SubmitBtn = (LinearLayout) findViewById(R.id.submitBtn);
+		SaveBtn=(LinearLayout) findViewById(R.id.saveBtn);
 		pDialog = new SweetAlertDialog(NewSendTimesheet.this,
 				SweetAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
 		norecord = (TextView) findViewById(R.id.newtextleave);
@@ -85,6 +86,7 @@ public class NewSendTimesheet extends Activity implements OnClickListener {
 		monthname = prefs.getMonthName();
 		textMonthName.setText(monthname);
 		SubmitBtn.setOnClickListener(this);
+		SaveBtn.setOnClickListener(this);
 		backimg.setOnClickListener(this);
 
 	}
@@ -324,6 +326,17 @@ public class NewSendTimesheet extends Activity implements OnClickListener {
 			startActivity(intent);
 			finish();
 			break;
+		case R.id.saveBtn:
+			arrayTSActivity = new ArrayList<String>();
+			arrayTSDescription = new ArrayList<String>();
+			if (adapter != null) {
+				for (Iterator<NewTimesheetModel> i = (adapter.getList())
+						.iterator(); i.hasNext();) {
+					NewTimesheetModel item = i.next();
+					arrayTSActivity.add(item.getTSActivity());
+					arrayTSDescription.add(item.getTSDescription());
+				}
+			}
 
 		default:
 			break;

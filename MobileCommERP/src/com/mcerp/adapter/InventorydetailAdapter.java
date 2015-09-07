@@ -1,9 +1,14 @@
 package com.mcerp.adapter;
 
+import java.io.File;
+import java.sql.Date;
 import java.util.ArrayList;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -12,6 +17,7 @@ import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -27,7 +33,9 @@ public class InventorydetailAdapter extends BaseAdapter {
 	public static ArrayList<InventoryModel> arraylistdata = new ArrayList<InventoryModel>();
 	private ArrayList<InventoryModel> dummyList;
 	static int scanPosition;
-
+	Uri mLastPhoto = null;
+	final static int REQUEST_TAKE_PICTURE = 1000;
+	private static final int REQUEST_SEND_IMAGE = 2000;
 	public InventorydetailAdapter(Inventorydetails act,
 			ArrayList<InventoryModel> arraylist, ListView inventory_listview) {
 		this.inventory_listview=inventory_listview;
@@ -47,7 +55,8 @@ public class InventorydetailAdapter extends BaseAdapter {
 	class ViewHolder {
 		public TextView assert_name_txt, assert_categoryname_txt,
 		assert_sr_no_txt, assert_tag_no_txt;
-
+		public ImageView img_photo;
+		
 		EditText edit_barcode;
 
 		CheckBox checkboxstatus;
@@ -78,6 +87,7 @@ public class InventorydetailAdapter extends BaseAdapter {
 		LayoutInflater mInflater = act.getLayoutInflater();
 		view = mInflater.inflate(R.layout.inventory_row_layout, null);
 		viewHolder = new ViewHolder();
+		viewHolder.img_photo=(ImageView) view.findViewById(R.id.img_photo);
 		viewHolder.assert_name_txt = (TextView) view
 				.findViewById(R.id.inventory_assert_type_txt);
 
@@ -97,6 +107,14 @@ public class InventorydetailAdapter extends BaseAdapter {
 				.findViewById(R.id.inventory_checkbox);
 		viewHolder.inventory_scan_btn_layout = (LinearLayout) view
 				.findViewById(R.id.inventory_scan_btn_layout);
+		viewHolder.img_photo.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				//startPhotoTaker();
+				
+			}
+		});
 
 		viewHolder.inventory_scan_btn_layout
 		.setOnClickListener(new OnClickListener() {
@@ -106,17 +124,7 @@ public class InventorydetailAdapter extends BaseAdapter {
 				scanPosition=position;
 				Intent i = new Intent(act, CaptureActivity.class);
 				act.startActivityForResult(i,1);
-				
-				
-				
-				
-				
-				
-			//	act.startActivity(i);
 
-
-				/*arraylistdata.get(position).setAssert_barcode(Constant.scanresult);
-						notifyDataSetChanged();*/
 			}
 		});
 
@@ -154,7 +162,7 @@ public class InventorydetailAdapter extends BaseAdapter {
 		return view;
 	}
 	
-	
+
 
 	public void test(String barcodeMsg) {
 		try{
@@ -168,7 +176,8 @@ public class InventorydetailAdapter extends BaseAdapter {
 		inventoryreplace.setAcceptStatus(inventoryModel.getAcceptStatus());
 		inventoryreplace.setAssetIssueDate(inventoryModel.getAssetIssueDate());
 		inventoryreplace.setAssert_barcode(barcodeMsg);
-		arraylistdata.set(InventorydetailAdapter.scanPosition, inventoryreplace);
+		
+        arraylistdata.set(InventorydetailAdapter.scanPosition, inventoryreplace);
 	
 		notifyDataSetChanged();
 		}

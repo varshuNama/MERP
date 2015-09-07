@@ -24,16 +24,18 @@ public class AsyncTaskDataLogin extends AsyncTask<String, String, String> {
 	AppPreferences prefs;
 	Home homefragment;
 	String responsedata;
+	String registration_id;
 	int flag = 0;
 
 	public AsyncTaskDataLogin(Context context, String username,
-			String password, String userid) {
+			String password, String userid,String reg_id) {
 		act = context;
 		prefs = AppPreferences.getInstance(act);
 		connectionDetector = new ConnectionDetector(act);
 		UserName = username;
 		Password = password;
 		UserId = userid;
+		registration_id=reg_id;
 		modeldata = new HomeModel();
 
 	}
@@ -54,7 +56,7 @@ public class AsyncTaskDataLogin extends AsyncTask<String, String, String> {
 		String Message = null;
 		try {
 			responsedata = MethodSoap
-					.getLoginDetail(UserName, Password, UserId);
+					.getLoginDetail(UserName, Password, UserId,registration_id);
 			JSONObject jsonobj = new JSONObject(responsedata);
 			Message = jsonobj.getString("message");
 
@@ -79,6 +81,7 @@ public class AsyncTaskDataLogin extends AsyncTask<String, String, String> {
 				prefs.setResponse(responsedata);
 				Intent intent = new Intent(act,
 						com.mcerp.main.NavigationActivity.class);
+				intent.putExtra("REGID", registration_id);
 				act.startActivity(intent);
 				((Activity) act).finish();
 

@@ -95,11 +95,12 @@ public class AsyncTaskTransferAssets extends AsyncTask<String, String, String> {
 		try {
 			if (!result.equals("") && !result.equals("null")
 					&& result.equals("success")) {
+				pDialog.dismiss();
+
 				TransferAssets fragment = new TransferAssets(act);
 				fragment.callTransferData(act, myresult1, myresult2, myresult3,
 						myresult4);
-				pDialog.dismiss();
-
+			
 			} else if (result.equals("fail")) {
 				pDialog.dismiss();
 				mydialog1 = new SweetAlertDialog(act,
@@ -191,6 +192,7 @@ public class AsyncTaskTransferAssets extends AsyncTask<String, String, String> {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			
 			
 		}
 
