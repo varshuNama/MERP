@@ -27,7 +27,6 @@ import android.widget.ExpandableListView.OnGroupExpandListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 import com.mcerp.assets.AcceptAssets;
@@ -42,6 +41,11 @@ import com.mcerp.fragments.Home;
 import com.mcerp.gts.Accept_Training;
 import com.mcerp.gts.Complete_Training;
 import com.mcerp.model.HomeModel;
+import com.mcerp.notification.InboxNotificationActivity;
+import com.mcerp.notification.SentNotificationFragment;
+import com.mcerp.notification.WriteNotificationFragment;
+import com.mcerp.projectedcosting.Projected_Costing_Edit_Frament;
+import com.mcerp.projectedcosting.Projected_New_Fragment;
 import com.mcerp.travel.ApproveTravelView;
 import com.mcerp.travel.NewTravel;
 import com.mcerp.travel.TravelExpensesReportFragment;
@@ -66,6 +70,7 @@ public class NavigationActivity extends FragmentActivity {
 	String Message = null;
 	AppPreferences prefs;
 	LinearLayout linaermain;
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +83,7 @@ public class NavigationActivity extends FragmentActivity {
 	}
 
 	private void init() {
+		
 		Utility.initFonts(getApplicationContext());
 		prefs = AppPreferences.getInstance(NavigationActivity.this);
 		connection = new ConnectionDetector(NavigationActivity.this);
@@ -87,6 +93,7 @@ public class NavigationActivity extends FragmentActivity {
 		titletext = (TextView) findViewById(R.id.textTitle);
 		if (!prefs.getRegistered()) {
 			prefs.setRegistered(true);
+			
 		}
 		response = prefs.getResponse();
 		parseResponse();
@@ -132,23 +139,11 @@ public class NavigationActivity extends FragmentActivity {
 					fragment = new Home(homearray);
 					new AsyncTaskDataLogin(NavigationActivity.this, prefs
 							.getUserName(), prefs.getPassword(), prefs
-							.getUserID()).execute("");
+							.getUserID(), prefs.getGCMRegID()).execute("");
 
 					break;
 
-				case 7:
-					Toast.makeText(NavigationActivity.this, "Working....",
-							Toast.LENGTH_LONG).show();
-					/*
-					 * fragment = new Notifications();
-					 * getSupportFragmentManager().beginTransaction()
-					 * .replace(R.id.content_frame, fragment).commit();
-					 * titletext.setText("Notifications");
-					 * mDrawerLayout.closeDrawer(expListView);
-					 */
-					break;
-
-				case 8:
+				case 9:
 					Log.d("Resnsjc", prefs.getRegistered() + "");
 					prefs.setRegistered(false);
 					prefs.setUserID("");
@@ -196,7 +191,30 @@ public class NavigationActivity extends FragmentActivity {
 							alertForInternetNotAvail();
 						}
 						break;
+
 					case 2:
+
+						if (connection.isConnectingToInternet()) {
+							Intent intent = new Intent(NavigationActivity.this,
+									LeaveCancealReq.class);
+							startActivity(intent);
+							finish();
+						} else {
+							alertForInternetNotAvail();
+						}
+						break;
+					case 3:
+
+						if (connection.isConnectingToInternet()) {
+							Intent intent = new Intent(NavigationActivity.this,
+									LeaveCancelation_ProjMgrApprova.class);
+							startActivity(intent);
+							finish();
+						} else {
+							alertForInternetNotAvail();
+						}
+						break;
+					case 4:
 						if (connection.isConnectingToInternet()) {
 							Intent intent = new Intent(NavigationActivity.this,
 									LeaveReport.class);
@@ -387,10 +405,54 @@ public class NavigationActivity extends FragmentActivity {
 							fragment = new com.mcerp.gts.Gts_View_Training_Fragment();
 							titletext.setText("GTS View");
 
-							/*getSupportFragmentManager().beginTransaction()
-									.replace(R.id.content_frame, fragment)
-									.addToBackStack(null).commit();
-*/
+							/*
+							 * getSupportFragmentManager().beginTransaction()
+							 * .replace(R.id.content_frame, fragment)
+							 * .addToBackStack(null).commit();
+							 */
+						} else {
+							alertForInternetNotAvail();
+						}
+						break;
+
+					default:
+						break;
+					}
+					break;
+					/*****************************************Projected Costing*******************************************************************/
+
+				case 6:
+					switch (childPosition) {
+					case 0:
+						if (connection.isConnectingToInternet()) {
+
+							fragment = new Projected_New_Fragment(NavigationActivity.this);
+							titletext.setText("Projected Costing New");
+							 getSupportFragmentManager().beginTransaction()
+							  .replace(R.id.content_frame, fragment)
+							 .addToBackStack(null).commit();
+
+						} else {
+							alertForInternetNotAvail();
+						}
+
+						break;
+					case 1:
+						if (connection.isConnectingToInternet()) {
+
+							fragment = new Projected_Costing_Edit_Frament(NavigationActivity.this);
+							titletext.setText("Edit Projected Costing");
+
+						} else {
+							alertForInternetNotAvail();
+						}
+
+						break;
+					case 2:
+						if (connection.isConnectingToInternet()) {
+
+							
+
 						} else {
 							alertForInternetNotAvail();
 						}
@@ -403,7 +465,7 @@ public class NavigationActivity extends FragmentActivity {
 
 				/***************************************** HR Policies ************************************************************************/
 
-				case 6:
+				case 7:
 					switch (childPosition) {
 					case 0:
 						if (connection.isConnectingToInternet()) {
@@ -530,6 +592,59 @@ public class NavigationActivity extends FragmentActivity {
 					default:
 						break;
 					}
+
+					/***************************************** Notification ************************************************************************/
+
+				case 8:
+					switch (childPosition) {
+					case 0:
+						if (connection.isConnectingToInternet()) {
+
+							fragment = new WriteNotificationFragment();
+							getSupportFragmentManager().beginTransaction()
+									.replace(R.id.content_frame, fragment)
+									.commit();
+							titletext.setText("Write Notification");
+							mDrawerLayout.closeDrawer(expListView);
+
+						} else {
+							alertForInternetNotAvail();
+						}
+
+						break;
+					case 1:
+						if (connection.isConnectingToInternet()) {
+
+							Intent intent = new Intent(NavigationActivity.this,
+									InboxNotificationActivity.class);
+							startActivity(intent);
+							/*
+							 * getSupportFragmentManager().beginTransaction()
+							 * .replace(R.id.content_frame, fragment) .commit();
+							 */
+							// titletext.setText("Inbox Notification");
+							/* mDrawerLayout.closeDrawer(expListView); */
+						} else {
+							alertForInternetNotAvail();
+						}
+
+						break;
+					case 2:
+						if (connection.isConnectingToInternet()) {
+							fragment = new SentNotificationFragment();
+							getSupportFragmentManager().beginTransaction()
+									.replace(R.id.content_frame, fragment)
+									.commit();
+							titletext.setText("Sent Notification");
+							mDrawerLayout.closeDrawer(expListView);
+
+						} else {
+							alertForInternetNotAvail();
+						}
+						break;
+					default:
+						break;
+					}
 					break;
 
 				default:
@@ -585,6 +700,7 @@ public class NavigationActivity extends FragmentActivity {
 		listDataHeader.add("Asset Tracker");
 		listDataHeader.add("Project Travel");
 		listDataHeader.add("Global Training Schedule");
+		listDataHeader.add("Pojected Cost");
 		listDataHeader.add("HR Policies");
 		listDataHeader.add("Notifications");
 		listDataHeader.add("Logout");
@@ -593,6 +709,8 @@ public class NavigationActivity extends FragmentActivity {
 		List<String> Leave_Portal_list = new ArrayList<String>();
 		Leave_Portal_list.add("Apply");
 		Leave_Portal_list.add("Approve");
+		Leave_Portal_list.add("Leave Cancel Req");
+		Leave_Portal_list.add("Approve/Cancel Req");
 		Leave_Portal_list.add("View");
 
 		List<String> Time_Sheet_Portallist = new ArrayList<String>();
@@ -615,6 +733,11 @@ public class NavigationActivity extends FragmentActivity {
 		Global_Training_Schedule.add("Accept Training");
 		Global_Training_Schedule.add("Complete Training");
 		Global_Training_Schedule.add("View");
+		
+		List<String> projected_cost = new ArrayList<String>();
+		projected_cost.add("New");
+		projected_cost.add("Edit");
+		projected_cost.add("Report");
 
 		List<String> hr_policies_list = new ArrayList<String>();
 		hr_policies_list.add("Human Resource Policy Manua");
@@ -626,17 +749,22 @@ public class NavigationActivity extends FragmentActivity {
 		hr_policies_list.add("International Exp Claim Form");
 		hr_policies_list.add("NOC for Resign Employee");
 
-		List<String> wk = new ArrayList<String>();
+		List<String> notifications_result = new ArrayList<String>();
+		notifications_result.add("Compose");
+		notifications_result.add("Inbox");
+		notifications_result.add("Sent");
 
+		List<String> wk = new ArrayList<String>();
 		listDataChild.put(listDataHeader.get(0), wk); // Header,
 		listDataChild.put(listDataHeader.get(1), Leave_Portal_list);
 		listDataChild.put(listDataHeader.get(2), Time_Sheet_Portallist);
 		listDataChild.put(listDataHeader.get(3), Asset_Tracker_Portallist);
 		listDataChild.put(listDataHeader.get(4), Project_Travel);
 		listDataChild.put(listDataHeader.get(5), Global_Training_Schedule);
-		listDataChild.put(listDataHeader.get(6), hr_policies_list);
-		listDataChild.put(listDataHeader.get(7), wk);
-		listDataChild.put(listDataHeader.get(8), wk);
+		listDataChild.put(listDataHeader.get(6), projected_cost);
+		listDataChild.put(listDataHeader.get(7), hr_policies_list);
+		listDataChild.put(listDataHeader.get(8), notifications_result);
+		listDataChild.put(listDataHeader.get(9), wk);
 
 	}
 
@@ -809,34 +937,26 @@ public class NavigationActivity extends FragmentActivity {
 
 	}
 
-	@Override
-	public void onBackPressed() {
-
-		new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
-				.setTitleText("Exit ?")
-				.setContentText("Do you want to exit.")
-				.setCancelText("No,cancel plz!")
-				.setConfirmText("Yes,exit it!")
-				.showCancelButton(true)
-				.setCancelClickListener(
-						new SweetAlertDialog.OnSweetClickListener() {
-							@Override
-							public void onClick(SweetAlertDialog sDialog) {
-								sDialog.dismiss();
-							}
-						})
-				.setConfirmClickListener(
-						new SweetAlertDialog.OnSweetClickListener() {
-							@Override
-							public void onClick(SweetAlertDialog sDialog) {
-								NavigationActivity.super.onBackPressed();
-								sDialog.dismiss();
-
-							}
-						}).show();
-
-	}
-
+	/*
+	 * @Override public void onBackPressed() {
+	 * 
+	 * new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
+	 * .setTitleText("Exit ?") .setContentText("Do you want to exit.")
+	 * .setCancelText("No,cancel plz!") .setConfirmText("Yes,exit it!")
+	 * .showCancelButton(true) .setCancelClickListener( new
+	 * SweetAlertDialog.OnSweetClickListener() {
+	 * 
+	 * @Override public void onClick(SweetAlertDialog sDialog) {
+	 * sDialog.dismiss(); } }) .setConfirmClickListener( new
+	 * SweetAlertDialog.OnSweetClickListener() {
+	 * 
+	 * @Override public void onClick(SweetAlertDialog sDialog) {
+	 * NavigationActivity.super.onBackPressed(); sDialog.dismiss();
+	 * 
+	 * } }).show();
+	 * 
+	 * }
+	 */
 	public void alertForInternetNotAvail() {
 		new SweetAlertDialog(NavigationActivity.this,
 				SweetAlertDialog.ERROR_TYPE).setTitleText("Oops...")
@@ -844,4 +964,43 @@ public class NavigationActivity extends FragmentActivity {
 
 	}
 
+	@Override
+	public void onBackPressed() {
+
+		AppPreferences mAppPreferences = AppPreferences
+				.getInstance(NavigationActivity.this);
+		if (mAppPreferences.getScreen() == com.mcerp.constant.AppConstants.homeScreen) {
+			new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
+					.setTitleText("Exit ?")
+					.setContentText("Do you want to exit.")
+					.setCancelText("No,cancel plz!")
+					.setConfirmText("Yes,exit it!")
+					.showCancelButton(true)
+					.setCancelClickListener(
+							new SweetAlertDialog.OnSweetClickListener() {
+								@Override
+								public void onClick(SweetAlertDialog sDialog) {
+									sDialog.dismiss();
+								}
+							})
+					.setConfirmClickListener(
+							new SweetAlertDialog.OnSweetClickListener() {
+								@Override
+								public void onClick(SweetAlertDialog sDialog) {
+									NavigationActivity.super.onBackPressed();
+									sDialog.dismiss();
+
+								}
+							}).show();
+		} else {
+
+			fragment = new Home(homearray);
+			titletext.setText("Home");
+			getSupportFragmentManager().beginTransaction()
+					.replace(R.id.content_frame, fragment).commit();
+			mDrawerLayout.closeDrawer(expListView);
+
+		}
+
+	}
 }

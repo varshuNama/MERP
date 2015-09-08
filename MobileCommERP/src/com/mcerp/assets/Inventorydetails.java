@@ -25,7 +25,7 @@ public class Inventorydetails extends Activity implements OnClickListener{
 	ListView inventory_listview;
 	TextView inventory_login_username,inventory_login_user_empcode;
 	AppPreferences prefs;
-	InventorydetailAdapter adapter;
+	static InventorydetailAdapter adapter;
 	LinearLayout inventory_senddata;
 	ArrayList<String>  arrayAssetStockIdlist=new ArrayList<String>();
 	ArrayList<String>  arrayAssetRemarkslist=new ArrayList<String>();

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import org.ksoap2.SoapEnvelope;
+import org.ksoap2.SoapFault;
 import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapPrimitive;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
@@ -18,11 +19,13 @@ public class MethodSoap {
 
 	/************* Getting Login Detail ***************************/
 	public static String getLoginDetail(String username, String password,
-			String userid) throws XmlPullParserException, IOException {
-		SoapObject request = new SoapObject(NAMESPACE, "ERP_User_Login");
+			String userid, String reg_id) throws XmlPullParserException,
+			IOException {
+		SoapObject request = new SoapObject(NAMESPACE, "ERP_User_Login_New");
 		request.addProperty("strUserEmail", username);
 		request.addProperty("strPassword", password);
 		request.addProperty("strUserId", userid);
+		request.addProperty("strRegId", reg_id);
 
 		SoapSerializationEnvelope soapEnvelope = new SoapSerializationEnvelope(
 				SoapEnvelope.VER12);
@@ -30,7 +33,7 @@ public class MethodSoap {
 		soapEnvelope.setOutputSoapObject(request);
 		System.setProperty("http.keepAlive", "false");
 		HttpTransportSE htse = new HttpTransportSE(Constant.BaseUrl);
-		htse.call("http://tempuri.org/ERP_User_Login", soapEnvelope, null);
+		htse.call("http://tempuri.org/ERP_User_Login_New", soapEnvelope, null);
 		SoapPrimitive response = (SoapPrimitive) soapEnvelope.getResponse();
 		return response.toString();
 	}
@@ -913,33 +916,32 @@ public class MethodSoap {
 		soapEnvelope.dotNet = true;
 		soapEnvelope.setOutputSoapObject(request);
 		System.setProperty("http.keepAlive", "false");
-		HttpTransportSE htse = new HttpTransportSE(
-				"http://mcpsindia.com/Android_ERP_WS/ERP.asmx");
+		HttpTransportSE htse = new HttpTransportSE(Constant.BaseUrl);
 		htse.call("http://tempuri.org/ERP_GTS_TrainingList_ToComplete",
 				soapEnvelope, null);
 		SoapPrimitive response = (SoapPrimitive) soapEnvelope.getResponse();
 		return response.toString();
 	}
-	public static String sendCompleteTrainingData(String strTRSId, String strEmpId)
-			   throws XmlPullParserException, IOException {
-			  SoapObject request = new SoapObject(NAMESPACE,
-			    "ERP_GTS_Training_Complete");
-			  request.addProperty("strTRSId", strTRSId);
-			  request.addProperty("strEmpId", strEmpId);
 
-			  SoapSerializationEnvelope soapEnvelope = new SoapSerializationEnvelope(
-			    SoapEnvelope.VER12);
-			  soapEnvelope.dotNet = true;
-			  soapEnvelope.setOutputSoapObject(request);
-			  System.setProperty("http.keepAlive", "false");
-			  HttpTransportSE htse = new HttpTransportSE(
-			    "http://mcpsindia.com/Android_ERP_WS/ERP.asmx");
-			  htse.call(
-			    "http://tempuri.org/ERP_GTS_Training_Complete",
-			    soapEnvelope, null);
-			  SoapPrimitive response = (SoapPrimitive) soapEnvelope.getResponse();
-			  return response.toString();
-			 }
+	public static String sendCompleteTrainingData(String strTRSId,
+			String strEmpId) throws XmlPullParserException, IOException {
+		SoapObject request = new SoapObject(NAMESPACE,
+				"ERP_GTS_Training_Complete");
+		request.addProperty("strTRSId", strTRSId);
+		request.addProperty("strEmpId", strEmpId);
+
+		SoapSerializationEnvelope soapEnvelope = new SoapSerializationEnvelope(
+				SoapEnvelope.VER12);
+		soapEnvelope.dotNet = true;
+		soapEnvelope.setOutputSoapObject(request);
+		System.setProperty("http.keepAlive", "false");
+		HttpTransportSE htse = new HttpTransportSE(Constant.BaseUrl);
+		htse.call("http://tempuri.org/ERP_GTS_Training_Complete", soapEnvelope,
+				null);
+		SoapPrimitive response = (SoapPrimitive) soapEnvelope.getResponse();
+		return response.toString();
+	}
+
 	/******************* Gts_View_Training_Report *************************/
 	public static String getGts_View_Training_Report_Data(String strTrainerId,
 			String strYearMonth) throws XmlPullParserException, IOException {
@@ -960,4 +962,255 @@ public class MethodSoap {
 		return response.toString();
 	}
 
+	/****************** Leave Cancel Req *********************************/
+
+	public static String getLeaveCancelReq(String EmpId)
+			throws XmlPullParserException, IOException {
+		SoapObject request = new SoapObject(NAMESPACE,
+				"ERP_Leave_Cancel_GetData");
+		request.addProperty("strEmpId", EmpId);
+
+		SoapSerializationEnvelope soapEnvelope = new SoapSerializationEnvelope(
+				SoapEnvelope.VER12);
+		soapEnvelope.dotNet = true;
+		soapEnvelope.setOutputSoapObject(request);
+		System.setProperty("http.keepAlive", "false");
+		HttpTransportSE htse = new HttpTransportSE(Constant.BaseUrl);
+		htse.call("http://tempuri.org/ERP_Leave_Cancel_GetData", soapEnvelope,
+				null);
+		SoapPrimitive response = (SoapPrimitive) soapEnvelope.getResponse();
+		return response.toString();
+	}
+
+	public static String sendLeave_Canceal_Req(ArrayList<String> arr1,
+			ArrayList<String> arr2, String userName, String empName,
+			ArrayList<String> arr3, ArrayList<String> arr4,
+			ArrayList<String> arr5, ArrayList<String> arr6,
+			ArrayList<String> arr7) throws XmlPullParserException, IOException {
+		SoapObject request = new SoapObject(NAMESPACE,
+				"ERP_Leave_Cancel_ReqToPm");
+		addAttributeparams(request, arr1, "arrayLeaveID");
+		addAttributeparams(request, arr2, "arrayCancelRemark");
+
+		request.addProperty("strEmpEmail", userName);
+		request.addProperty("strEmpName", empName);
+
+		addAttributeparams(request, arr3, "arrayPmName");
+		addAttributeparams(request, arr4, "arrayPmEmail");
+		addAttributeparams(request, arr5, "arrayLeaveDate");
+		addAttributeparams(request, arr6, "arrayLeaveDay");
+		addAttributeparams(request, arr7, "arrayProjName");
+
+		SoapSerializationEnvelope soapEnvelope = new SoapSerializationEnvelope(
+				SoapEnvelope.VER12);
+		soapEnvelope.dotNet = true;
+		soapEnvelope.setOutputSoapObject(request);
+		System.setProperty("http.keepAlive", "false");
+		HttpTransportSE htse = new HttpTransportSE(Constant.BaseUrl);
+		htse.call("http://tempuri.org/ERP_Leave_Cancel_ReqToPm", soapEnvelope,
+				null);
+		SoapPrimitive response = (SoapPrimitive) soapEnvelope.getResponse();
+		return response.toString();
+	}
+
+	/****************** Leave Cancellation Proj Mgr Approval *********************************/
+
+	public static String getLeaveCancelation_ProjMgrApprova(String strEmpId)
+			throws XmlPullParserException, IOException {
+		SoapObject request = new SoapObject(NAMESPACE,
+				"ERP_Leave_Cancel_ProjMgrApproval_GetData");
+		request.addProperty("strEmpId", strEmpId);
+
+		SoapSerializationEnvelope soapEnvelope = new SoapSerializationEnvelope(
+				SoapEnvelope.VER12);
+		soapEnvelope.dotNet = true;
+		soapEnvelope.setOutputSoapObject(request);
+		System.setProperty("http.keepAlive", "false");
+		HttpTransportSE htse = new HttpTransportSE(Constant.BaseUrl);
+		htse.call(
+				"http://tempuri.org/ERP_Leave_Cancel_ProjMgrApproval_GetData",
+				soapEnvelope, null);
+		SoapPrimitive response = (SoapPrimitive) soapEnvelope.getResponse();
+		return response.toString();
+	}
+
+	/****************** sumbit_LeaveCancelation_ProjMgrApprova *********************************/
+
+	public static String send_sumbit_LeaveCancelation_ProjMgrApprova(
+			String empId, String empName, String userName,
+			ArrayList<String> arr1, ArrayList<String> arr2,
+			ArrayList<String> arr3, ArrayList<String> arr4,
+			ArrayList<String> arr5, ArrayList<String> arr6,
+			ArrayList<String> arr7, ArrayList<String> arr8,
+			ArrayList<String> arr9, ArrayList<String> arr10)
+			throws XmlPullParserException, IOException {
+		SoapObject request = new SoapObject(NAMESPACE,
+				"ERP_Leave_Cancel_Request_Approval");
+		request.addProperty("strEmpID", empId);
+		request.addProperty("strEmpName", empName);
+		request.addProperty("strEmpEmail", userName);
+		addAttributeparams(request, arr1, "arrayLeaveId");
+		addAttributeparams(request, arr2, "arrayApprovalFlag");
+		addAttributeparams(request, arr3, "arrayApproveReason");
+		addAttributeparams(request, arr4, "arrayReqEmpId");
+		addAttributeparams(request, arr5, "arrayReqEmpName");
+		addAttributeparams(request, arr6, "arrayReqEmpEmail");
+		addAttributeparams(request, arr7, "arrayLeaveDate");
+		addAttributeparams(request, arr8, "arrayLeaveDay");
+		addAttributeparams(request, arr9, "arrayProjectName");
+		addAttributeparams(request, arr10, "arrayLeaveMonthYear");
+
+		SoapSerializationEnvelope soapEnvelope = new SoapSerializationEnvelope(
+				SoapEnvelope.VER12);
+		soapEnvelope.dotNet = true;
+		soapEnvelope.setOutputSoapObject(request);
+		System.setProperty("http.keepAlive", "false");
+		HttpTransportSE htse = new HttpTransportSE(Constant.BaseUrl);
+		htse.call("http://tempuri.org/ERP_Leave_Cancel_Request_Approval",
+				soapEnvelope, null);
+		SoapPrimitive response = (SoapPrimitive) soapEnvelope.getResponse();
+		return response.toString();
+	}
+
+	/************* Project Costing Get Data ***************************/
+	public static String GetDataForPojectCosting()
+			throws XmlPullParserException, IOException {
+		SoapObject request = new SoapObject(NAMESPACE,
+				"ERP_ProjectCost_GetProjList");
+
+		SoapSerializationEnvelope soapEnvelope = new SoapSerializationEnvelope(
+				SoapEnvelope.VER12);
+		soapEnvelope.dotNet = true;
+		soapEnvelope.setOutputSoapObject(request);
+		System.setProperty("http.keepAlive", "false");
+		HttpTransportSE htse = new HttpTransportSE(Constant.BaseUrl);
+		htse.call("http://tempuri.org/ERP_ProjectCost_GetProjList",
+				soapEnvelope, null);
+		SoapPrimitive response = (SoapPrimitive) soapEnvelope.getResponse();
+		return response.toString();
+	}
+
+	/************* Project Costing Get Data ***************************/
+	public static String SendAndGetProjectCostGetSheet(String strprjcode,
+			String sheetdate) throws XmlPullParserException, IOException {
+		SoapObject request = new SoapObject(NAMESPACE,
+				"ERP_ProjectCost_GetSheet");
+
+		SoapSerializationEnvelope soapEnvelope = new SoapSerializationEnvelope(
+				SoapEnvelope.VER12);
+		request.addProperty("strProjCode", strprjcode);
+		request.addProperty("strSheetDate", sheetdate);
+		soapEnvelope.dotNet = true;
+		soapEnvelope.setOutputSoapObject(request);
+		System.setProperty("http.keepAlive", "false");
+		HttpTransportSE htse = new HttpTransportSE(Constant.BaseUrl);
+		htse.call("http://tempuri.org/ERP_ProjectCost_GetSheet", soapEnvelope,
+				null);
+		SoapPrimitive response = (SoapPrimitive) soapEnvelope.getResponse();
+		return response.toString();
+	}
+
+	public static String ERPProjectCostAddNewProjectedCost(String empId,
+			 String strMy,String projectcode, ArrayList<String> arr1,
+			ArrayList<String> arr2, ArrayList<String> arr3,
+			ArrayList<String> arr4, ArrayList<String> arr5)
+			throws XmlPullParserException, IOException {
+		SoapObject request = new SoapObject(NAMESPACE,
+				"ERP_ProjectCost_Add_NewProjected_Cost");
+
+		request.addProperty("strEmpId", empId);
+		request.addProperty("strProjCode", projectcode);
+		request.addProperty("strMY", strMy);
+		addAttributeparams(request, arr1, "arraySheetId");
+		addAttributeparams(request, arr2, "arrayResourceCode");
+		addAttributeparams(request, arr3, "arrayQty");
+		addAttributeparams(request, arr4, "arrayPrice");
+		addAttributeparams(request, arr5, "arrayTotal");
+
+		SoapSerializationEnvelope soapEnvelope = new SoapSerializationEnvelope(
+				SoapEnvelope.VER12);
+		soapEnvelope.dotNet = true;
+		soapEnvelope.setOutputSoapObject(request);
+		System.setProperty("http.keepAlive", "false");
+		HttpTransportSE htse = new HttpTransportSE(Constant.BaseUrl);
+		htse.call("http://tempuri.org/ERP_ProjectCost_Add_NewProjected_Cost",
+				soapEnvelope, null);
+		SoapPrimitive response = (SoapPrimitive) soapEnvelope.getResponse();
+		return response.toString();
+	}
+	/************* Project Costing Edit Get Data ***************************/
+	public static String ERPProjectCostEditGetData(String projectcode,
+			 String projectclosed,String getdate)
+			throws XmlPullParserException, IOException {
+		SoapObject request = new SoapObject(NAMESPACE,
+				"ERP_ProjectCost_Edit_GetData");
+		request.addProperty("strProjCode", projectcode);
+		request.addProperty("strProjClosed", projectclosed);
+		request.addProperty("strMY", getdate);
+
+		SoapSerializationEnvelope soapEnvelope = new SoapSerializationEnvelope(
+				SoapEnvelope.VER12);
+		
+		soapEnvelope.dotNet = true;
+		soapEnvelope.setOutputSoapObject(request);
+		System.setProperty("http.keepAlive", "false");
+		HttpTransportSE htse = new HttpTransportSE(Constant.BaseUrl);
+		htse.call("http://tempuri.org/ERP_ProjectCost_Edit_GetData",
+				soapEnvelope, null);
+		SoapPrimitive response = (SoapPrimitive) soapEnvelope.getResponse();
+		return response.toString();
+	}
+	
+	/************* Project Costing Edit Get Data ***************************/
+	public static String ERPProjectCostEditGetEditDetails(String costid,
+			 String sheetid)
+			throws XmlPullParserException, IOException {
+		SoapObject request = new SoapObject(NAMESPACE,
+				"ERP_ProjectCost_Edit_GetEditDetails");
+		request.addProperty("strSheetId", costid);
+		request.addProperty("strCostId", sheetid);
+		
+		SoapSerializationEnvelope soapEnvelope = new SoapSerializationEnvelope(
+				SoapEnvelope.VER12);
+		
+		soapEnvelope.dotNet = true;
+		soapEnvelope.setOutputSoapObject(request);
+		System.setProperty("http.keepAlive", "false");
+		HttpTransportSE htse = new HttpTransportSE(Constant.BaseUrl);
+		htse.call("http://tempuri.org/ERP_ProjectCost_Edit_GetEditDetails",
+				soapEnvelope, null);
+		SoapPrimitive response = (SoapPrimitive) soapEnvelope.getResponse();
+		return response.toString();
+	}
+	
+	public static String ERPProjectCostEditSubmitEditData(String costID,
+			 String sheetID,String empid, ArrayList<String> arr1,
+			ArrayList<String> arr2, ArrayList<String> arr3,
+			ArrayList<String> arr4, ArrayList<String> arr5,ArrayList<String> arr6, ArrayList<String> arr7)
+			throws XmlPullParserException, IOException {
+		SoapObject request = new SoapObject(NAMESPACE,
+				"ERP_ProjectCost_Edit_SubmitEditData");
+
+		request.addProperty("strCostId", costID);
+		request.addProperty("strSheetId", sheetID);
+		request.addProperty("strEmpId", empid);
+		addAttributeparams(request, arr1, "arrayDetailId");
+		addAttributeparams(request, arr2, "arrayCostId");
+		addAttributeparams(request, arr3, "arraySheetId");
+		addAttributeparams(request, arr4, "arrayResourceId");
+		addAttributeparams(request, arr5, "arrayQty");
+		addAttributeparams(request, arr6, "arrayPrice");
+		addAttributeparams(request, arr7, "arrayAmount");
+
+		SoapSerializationEnvelope soapEnvelope = new SoapSerializationEnvelope(
+				SoapEnvelope.VER12);
+		soapEnvelope.dotNet = true;
+		soapEnvelope.setOutputSoapObject(request);
+		System.setProperty("http.keepAlive", "false");
+		HttpTransportSE htse = new HttpTransportSE(Constant.BaseUrl);
+		htse.call("http://tempuri.org/ERP_ProjectCost_Edit_SubmitEditData",
+				soapEnvelope, null);
+		SoapPrimitive response = (SoapPrimitive) soapEnvelope.getResponse();
+		return response.toString();
+	}
 }

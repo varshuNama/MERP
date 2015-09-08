@@ -1,5 +1,6 @@
 package com.mcerp.main;
 
+import com.mcerp.connection.ConnectionDetector;
 import com.mcerp.util.AppPreferences;
 import com.mcerp.util.Utility;
 
@@ -9,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Window;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class SplashActivity extends Activity {
 	protected boolean _active = true;
@@ -22,6 +24,8 @@ public class SplashActivity extends Activity {
 		setContentView(R.layout.activity_splash);
 		prefs=AppPreferences.getInstance(SplashActivity.this);
 		Utility.initFonts(getApplicationContext());
+		
+		
 		TextView header = (TextView) findViewById(R.id.txtheader);
 		header.setTypeface(Utility.Ascom_Zwo_BoldPS);
 		TextView headerERP = (TextView) findViewById(R.id.TextHeader);
@@ -44,7 +48,19 @@ public class SplashActivity extends Activity {
 				}
 			}
 		};
-		splashTread.start();
+		PlayServicesHelper playService = new PlayServicesHelper(SplashActivity.this);
+		if(playService.getRegistrationId().isEmpty()){
+			ConnectionDetector connectiondetector = new ConnectionDetector(this);
+			if(connectiondetector.isConnectingToInternet()){
+				playService.checkPlayService();
+				splashTread.start();
+			}else{
+				Toast.makeText(SplashActivity.this, "Please, connect to active internet connection", Toast.LENGTH_LONG).show();
+				SplashActivity.this.finish();
+			}
+		}else{
+			splashTread.start();
+		}
 
 	}
 

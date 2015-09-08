@@ -135,6 +135,7 @@ public class AcceptDetailAssetDataAdapter extends BaseAdapter {
 		viewHolder.data2.setText(arraylistdata.get(position).getCategoryName_D());
 		viewHolder.data3.setText(arraylistdata.get(position).getAssetSrNo_D());
 		viewHolder.data4.setText(arraylistdata.get(position).getAssetTagNo_D());
+		
 
 		return view;
 	}

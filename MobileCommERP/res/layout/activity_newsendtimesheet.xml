@@ -24,6 +24,17 @@
             android:id="@+id/lblListHeader"
             style="@style/header_textView"
             android:text="@string/generate_timesheet" />
+         <LinearLayout
+            android:id="@+id/saveBtn"
+            style="@style/linear_submit_button" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/save"
+                android:textColor="@color/textcomman_color"
+                android:textStyle="bold" />
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/submitBtn"

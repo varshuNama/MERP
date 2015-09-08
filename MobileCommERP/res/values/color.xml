@@ -7,11 +7,12 @@
     <color name="list_divider">#85DDDD</color>
     <color name="action_bar">#55ccc8</color>
 <color name="cellback">#ECF6FC</color>
+<color name="transparent_blackcolor">#CCFF0000</color>
 <color name="submit_button_text_color">#000000</color>
     <!-- new changes -->
 
     <color name="input_bg_color">#55FFFFFF</color>
-    <color name="input_pop_bg_color">#99FFFFFF</color>
+    <color name="input_pop_bg_color">#FFFFFF</color>
     <color name="input_focus_bg_color">#00FFFFFF</color>
     <color name="input_stroke_color">#59cfc1</color>
     <color name="btn_find_color">#ec9315</color>

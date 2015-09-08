@@ -4,6 +4,7 @@ public class Constant
 {
 	public static final String BaseUrl="http://mcpsindia.com/Android_ERP_WS/ERP.asmx";
 	public static String Response=null;
+	
 	public static final String   Human_Resource_Policy_Manual="http://www.mcpsindia.com/HRPolicy/Policy%20Manual-%20MobileComm%20Technologies.pdf";
 	public static final String   Holiday_List="http://www.mcpsindia.com/HRPolicy/HolidayCalender.pdf";
 	public static final String   Guidlines_For_filling_Claim_forms="http://www.mcpsindia.com/HRPolicy/Guidlines%20For%20filling%20Claim%20forms.pdf";
@@ -15,7 +16,7 @@ public class Constant
 	
 	public static final String MSG_RECEIVERD_WHILE_OUTSIDE_APP = "MSG_RECEIVERD_WHILE_OUTSIDE_APP";
 	public static final String PROPERTY_REG_ID = "registrationId";
-	public static final String GCM_SENDER_ID = "852041101831";
+	public static final String GCM_SENDER_ID ="1042902423919";
 	public static final String PROFILEPREF = null;
 	public static String GCM_MESSAGE= "Message";
 	public static int NUMBER;
