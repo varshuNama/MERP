@@ -55,6 +55,7 @@
     <!-- Appove Timesheet text -->
 
     <string name="for_the_month">For the Month: </string>
+     <string name="for_the_cost_month"> Month </string>
     <string name="month">Month</string>
     <string name="emp_name">Emp Name</string>
     <string name="project">Project</string>

@@ -103,8 +103,7 @@ public class Project_Cost_After_EditGet_Sheet_Adapter extends BaseAdapter {
 			public void onTextChanged(CharSequence arg0, int arg1, int arg2,
 					int arg3) {
 				viewHolder.total_cost.setText(addNumbers(viewHolder));
-				arraylistdata.get(position)
-						.setTatalcost(addNumbers(viewHolder));
+				arraylistdata.get(position).setTatalcost(addNumbers(viewHolder));
 
 			}
 

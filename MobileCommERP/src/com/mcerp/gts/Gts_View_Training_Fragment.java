@@ -37,7 +37,6 @@ public class Gts_View_Training_Fragment extends Fragment {
 	Spinner monthSpinner, yearSpinner;
 
 	ArrayAdapter adaptermonth, adapteryear;
-
 	View rootView;
 
 	@Override
@@ -81,29 +80,19 @@ public class Gts_View_Training_Fragment extends Fragment {
 				String empid = EmpId.toString();
 
 				String yyyy = yearSpinner.getSelectedItem().toString();
-				//String mm = monthSpinner.getSelectedItem().toString();
+
 				int mPos = monthSpinner.getSelectedItemPosition();
 				String wordmonthSpinner = myMonthlist[mPos];
-				/*int year = Calendar.getInstance().get(Calendar.YEAR);
 
-				int month = Calendar.getInstance().get(Calendar.MONTH) + 1;*/
-				/*if (Integer.parseInt(yyyy) > year || mPos + 1 > month) {
-					Toast.makeText(
-							getActivity(),
-							"Month should not be greater then Current Month",
-							Toast.LENGTH_SHORT).show();
+				Intent intent = new Intent(getActivity(),
+						Gts_View_Training_Report.class);
 
-				} else {*/
-					Intent intent = new Intent(getActivity(),
-							Gts_View_Training_Report.class);
+				intent.putExtra("year", yyyy);
+				intent.putExtra("month", wordmonthSpinner);
 
-					intent.putExtra("year", yyyy);
-					intent.putExtra("month", wordmonthSpinner);
+				intent.putExtra("empid", empid);
 
-					intent.putExtra("empid", empid);
-
-					startActivity(intent);
-				/*}*/
+				startActivity(intent);
 
 			}
 		});
@@ -151,6 +140,7 @@ public class Gts_View_Training_Fragment extends Fragment {
 		gts_view_training_activity_trainer_id.setText(EmpCode);
 
 	}
+
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 
@@ -158,8 +148,7 @@ public class Gts_View_Training_Fragment extends Fragment {
 
 		AppPreferences mAppPreferences = AppPreferences
 				.getInstance(getActivity());
-		mAppPreferences
-				.setScreen(com.mcerp.constant.AppConstants.GTSView);
+		mAppPreferences.setScreen(com.mcerp.constant.AppConstants.GTSView);
 
 	}
 }

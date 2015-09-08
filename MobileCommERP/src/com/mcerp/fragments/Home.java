@@ -22,6 +22,9 @@ public class Home extends Fragment {
 	public Home(ArrayList<HomeModel> homearray) {
 		arraylist = homearray;
 	}
+	public Home() {
+		
+	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,

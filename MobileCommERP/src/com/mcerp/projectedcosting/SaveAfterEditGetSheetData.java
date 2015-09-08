@@ -30,16 +30,16 @@ public class SaveAfterEditGetSheetData extends Activity implements
 	TextView norecord;
 	SweetAlertDialog pDialog;
 	int flag = 0;
-	LinearLayout header, edit_linear;
+	LinearLayout header, edit__button_linear;
 	ArrayList<ProjectCostAfterEditSaveModel> array_list;
 	Project_Cost_After_EditGet_Sheet_Adapter adapter;
 	LinearLayout project_cost_back;
 	String responsesubmitdata;
-	ArrayList<String> arrayDetailId,arraySheetId, arrayResourceId, arrayQty,arrayCostId,
-			arrayUnitprice, arrayAmount;
+	ArrayList<String> arrayDetailId, arraySheetId, arrayResourceId, arrayQty,
+			arrayCostId, arrayUnitprice, arrayAmount;
 	ConnectionDetector connection;
 	AppPreferences prefs;
-	String cost_id,sheet_id, month_year_date;
+	String cost_id, sheet_id, month_year_date;
 	SweetAlertDialog Dialog;
 
 	@Override
@@ -56,11 +56,11 @@ public class SaveAfterEditGetSheetData extends Activity implements
 		getlist = (ListView) findViewById(R.id.list_project_cost_after_edit);
 		norecord = (TextView) findViewById(R.id.noRecordprojectprojectcost);
 		header = (LinearLayout) findViewById(R.id.project_cost_header);
-		edit_linear = (LinearLayout) findViewById(R.id.project_cost_edit_after_button);
+		edit__button_linear = (LinearLayout) findViewById(R.id.submit_project_cost);
 		project_cost_back = (LinearLayout) findViewById(R.id.project_cost_after_back_edit);
 
 		project_cost_back.setOnClickListener(this);
-		edit_linear.setOnClickListener(this);
+		edit__button_linear.setOnClickListener(this);
 		connection = new ConnectionDetector(this);
 		pDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE)
 				.setTitleText("Loading");
@@ -68,8 +68,9 @@ public class SaveAfterEditGetSheetData extends Activity implements
 		cost_id = getIntent().getExtras().getString("CostID");
 		sheet_id = getIntent().getExtras().getString("SheetID");
 
-	 new AsyncTaskERPProjectCostEditGetEditDetails(SaveAfterEditGetSheetData.this,Dialog,cost_id, sheet_id).execute();
-	
+		new AsyncTaskERPProjectCostEditGetEditDetails(
+				SaveAfterEditGetSheetData.this, Dialog, cost_id, sheet_id)
+				.execute();
 
 	}
 
@@ -77,6 +78,7 @@ public class SaveAfterEditGetSheetData extends Activity implements
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.project_cost_after_back_edit:
+
 			finish();
 			break;
 		case R.id.submit_project_cost:
@@ -84,18 +86,17 @@ public class SaveAfterEditGetSheetData extends Activity implements
 			arrayResourceId = new ArrayList<String>();
 			arrayQty = new ArrayList<String>();
 			arrayUnitprice = new ArrayList<String>();
-			arrayAmount= new ArrayList<String>();
-			arrayDetailId=new ArrayList<String>();
-			arrayCostId=new ArrayList<String>();
+			arrayAmount = new ArrayList<String>();
+			arrayDetailId = new ArrayList<String>();
+			arrayCostId = new ArrayList<String>();
 			if (adapter != null) {
-				for (Iterator<ProjectCostAfterEditSaveModel> i = (adapter.getList())
-						.iterator(); i.hasNext();) {
+				for (Iterator<ProjectCostAfterEditSaveModel> i = (adapter
+						.getList()).iterator(); i.hasNext();) {
 
 					ProjectCostAfterEditSaveModel item = i.next();
 					if (!item.isCheckboxstatus() == false) {
 						arraySheetId.add(item.getSheetId());
 						arrayResourceId.add(item.getResourceId());
-						arrayAmount.add(item.getTatalcost());
 						arrayQty.add(item.getQantity());
 						arrayUnitprice.add(item.getUnit_test());
 						arrayCostId.add(item.getCostId());
@@ -133,14 +134,14 @@ public class SaveAfterEditGetSheetData extends Activity implements
 			pDialog.show();
 
 		}
-		
+
 		@Override
 		protected String doInBackground(String... params) {
 			String message = null, response = null;
 			try {
-				response = MethodSoap.ERPProjectCostEditSubmitEditData(cost_id,sheet_id,
-						prefs.getUserID(),
-						arrayDetailId, arrayCostId, arraySheetId,arrayResourceId,arrayQty,
+				response = MethodSoap.ERPProjectCostEditSubmitEditData(cost_id,
+						sheet_id, prefs.getUserID(), arrayDetailId,
+						arrayCostId, arraySheetId, arrayResourceId, arrayQty,
 						arrayUnitprice, arrayAmount);
 				JSONObject jsonobj = new JSONObject(response);
 				message = jsonobj.getString("message");
@@ -214,12 +215,13 @@ public class SaveAfterEditGetSheetData extends Activity implements
 
 	public void sendDataToProjectEditCost(SaveAfterEditGetSheetData act,
 			ArrayList<ProjectCostAfterEditSaveModel> arraygetdata) {
-		adapter = new Project_Cost_After_EditGet_Sheet_Adapter(act, arraygetdata);
+		adapter = new Project_Cost_After_EditGet_Sheet_Adapter(act,
+				arraygetdata);
 		getlist.setAdapter(adapter);
 	}
+
 	@Override
 	public void onBackPressed() {
-		// TODO Auto-generated method stub
 		super.onBackPressed();
 		finish();
 	}

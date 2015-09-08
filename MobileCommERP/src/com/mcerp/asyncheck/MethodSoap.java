@@ -331,19 +331,17 @@ public class MethodSoap {
 	}
 
 	/*************************** GCM ************************/
-	public static String SendPushMessage(String status)
+	public static String SendPushMessage()
 			throws XmlPullParserException, IOException {
-		SoapObject request = new SoapObject(NAMESPACE, "Status_Method");
-		request.addProperty("strStatus", status);
+		SoapObject request = new SoapObject(NAMESPACE, "Notification_List");
 
 		SoapSerializationEnvelope soapEnvelope = new SoapSerializationEnvelope(
 				SoapEnvelope.VER12);
 		soapEnvelope.dotNet = true;
 		soapEnvelope.setOutputSoapObject(request);
 		System.setProperty("http.keepAlive", "false");
-		HttpTransportSE htse = new HttpTransportSE(
-				"http://180.151.5.13/IDMS_WS/IDMS.asmx");
-		htse.call("http://tempuri.org/Status_Method", soapEnvelope, null);
+		HttpTransportSE htse = new HttpTransportSE(Constant.BaseUrl);
+		htse.call("http://tempuri.org/Notification_List", soapEnvelope, null);
 		SoapPrimitive response = (SoapPrimitive) soapEnvelope.getResponse();
 		return response.toString();
 	}
@@ -1167,8 +1165,8 @@ public class MethodSoap {
 			throws XmlPullParserException, IOException {
 		SoapObject request = new SoapObject(NAMESPACE,
 				"ERP_ProjectCost_Edit_GetEditDetails");
-		request.addProperty("strSheetId", costid);
-		request.addProperty("strCostId", sheetid);
+		request.addProperty("strSheetId", sheetid);
+		request.addProperty("strCostId", costid);
 		
 		SoapSerializationEnvelope soapEnvelope = new SoapSerializationEnvelope(
 				SoapEnvelope.VER12);

@@ -1,17 +1,13 @@
 package com.mcerp.model;
 
-public class Push {
+public class PushModel {
 
 	String msg;
-	public Push() {
+	public PushModel() {
 		super();
 		
 	}
-	public Push(String messageType) {
-		// TODO Auto-generated constructor stub
-		this.msg=messageType;
-	}
-
+	
 	public String getMsg() {
 		return msg;
 	}

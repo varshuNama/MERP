@@ -41,19 +41,14 @@ public class Projected_Costing_Edit_Frament extends Fragment {
 	RadioGroup rd;
 	SweetAlertDialog Dialog, pDialog, dialog;
 	Button submit_btn;
-	NavigationActivity act;
+
 	ImageView close_btn_active, cloase_btn_closed;
 	int flag;
 	ConnectionDetector connection;
 	AppPreferences prefs;
-	String responseData, ProjectCode,active_closed_flag="0";
+	String responseData, ProjectCode, active_closed_flag = "0";
 	List<String> strClosedProjectName, strActiveProjectName;
 	ArrayList<ProjectedCostGetData> project_cost_array;
-	
-
-	public Projected_Costing_Edit_Frament(NavigationActivity navigationActivity) {
-		act = navigationActivity;
-	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -103,11 +98,11 @@ public class Projected_Costing_Edit_Frament extends Fragment {
 				if (checkedId == R.id.rd_active) {
 					spin_active.setEnabled(true);
 					spin_closed.setEnabled(false);
-					active_closed_flag="0";
+					active_closed_flag = "0";
 				} else if (checkedId == R.id.rd_closed) {
 					spin_active.setEnabled(false);
 					spin_closed.setEnabled(true);
-					active_closed_flag="1";
+					active_closed_flag = "1";
 				}
 
 			}
@@ -159,8 +154,9 @@ public class Projected_Costing_Edit_Frament extends Fragment {
 						}
 					}
 				}
-				Intent intent = new Intent(getActivity(), GetSheetEditData.class);
-				intent.putExtra("ActiveClosedFlag",active_closed_flag);
+				Intent intent = new Intent(getActivity(),
+						GetSheetEditData.class);
+				intent.putExtra("ActiveClosedFlag", active_closed_flag);
 				intent.putExtra("ProjectCode", ProjectCode);
 				intent.putExtra("MonthYear", fDate);
 				startActivity(intent);
@@ -176,7 +172,7 @@ public class Projected_Costing_Edit_Frament extends Fragment {
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
-			pDialog = new SweetAlertDialog(act, SweetAlertDialog.PROGRESS_TYPE)
+			pDialog = new SweetAlertDialog(getActivity(), SweetAlertDialog.PROGRESS_TYPE)
 					.setTitleText("Loading");
 			pDialog.show();
 			project_cost_array = new ArrayList<ProjectedCostGetData>();
@@ -255,7 +251,7 @@ public class Projected_Costing_Edit_Frament extends Fragment {
 					if (flag == 1) {
 						flag = 0;
 
-						dialog = new SweetAlertDialog(act,
+						dialog = new SweetAlertDialog(getActivity(),
 								SweetAlertDialog.WARNING_TYPE)
 								.setTitleText("Oops")
 								.setContentText("Server Connection Problem!")
@@ -266,10 +262,10 @@ public class Projected_Costing_Edit_Frament extends Fragment {
 											public void onClick(
 													SweetAlertDialog sDialog) {
 												Intent intent = new Intent(
-														act,
+														getActivity(),
 														NavigationActivity.class);
-												act.startActivity(intent);
-												((Activity) act).finish();
+												getActivity().startActivity(intent);
+												((Activity) getActivity()).finish();
 
 												sDialog.dismiss();
 											}
@@ -277,7 +273,7 @@ public class Projected_Costing_Edit_Frament extends Fragment {
 						dialog.show();
 
 					} else {
-						dialog = new SweetAlertDialog(act,
+						dialog = new SweetAlertDialog(getActivity(),
 								SweetAlertDialog.WARNING_TYPE)
 								.setTitleText("Oops")
 								.setContentText("Does not get Proper Response.")
@@ -288,10 +284,10 @@ public class Projected_Costing_Edit_Frament extends Fragment {
 											public void onClick(
 													SweetAlertDialog sDialog) {
 												Intent intent = new Intent(
-														act,
+														getActivity(),
 														NavigationActivity.class);
-												act.startActivity(intent);
-												((Activity) act).finish();
+												getActivity().startActivity(intent);
+												((Activity) getActivity()).finish();
 
 												sDialog.dismiss();
 											}

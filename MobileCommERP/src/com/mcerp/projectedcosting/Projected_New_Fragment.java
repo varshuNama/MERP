@@ -41,7 +41,6 @@ public class Projected_New_Fragment extends Fragment {
 	RadioGroup rd;
 	SweetAlertDialog Dialog, pDialog, dialog;
 	Button submit_btn;
-	NavigationActivity act;
 	ImageView close_btn_active, cloase_btn_closed;
 	int flag;
 	ConnectionDetector connection;
@@ -50,9 +49,6 @@ public class Projected_New_Fragment extends Fragment {
 	List<String> strClosedProjectName, strActiveProjectName;
 	ArrayList<ProjectedCostGetData> project_cost_array;
 
-	public Projected_New_Fragment(NavigationActivity navigationActivity) {
-		act = navigationActivity;
-	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -85,7 +81,6 @@ public class Projected_New_Fragment extends Fragment {
 		SimpleDateFormat month_date = new SimpleDateFormat("MMM");
 		String monthname = month_date.format(calender.getTime());
 
-		// int day=calender.get(Calendar.d)
 		prefs = AppPreferences.getInstance(getActivity());
 		connection = new ConnectionDetector(getActivity());
 
@@ -172,7 +167,7 @@ public class Projected_New_Fragment extends Fragment {
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
-			pDialog = new SweetAlertDialog(act, SweetAlertDialog.PROGRESS_TYPE)
+			pDialog = new SweetAlertDialog(getActivity(), SweetAlertDialog.PROGRESS_TYPE)
 					.setTitleText("Loading");
 			pDialog.show();
 			project_cost_array = new ArrayList<ProjectedCostGetData>();
@@ -251,7 +246,7 @@ public class Projected_New_Fragment extends Fragment {
 					if (flag == 1) {
 						flag = 0;
 
-						dialog = new SweetAlertDialog(act,
+						dialog = new SweetAlertDialog(getActivity(),
 								SweetAlertDialog.WARNING_TYPE)
 								.setTitleText("Oops")
 								.setContentText("Server Connection Problem!")
@@ -262,10 +257,10 @@ public class Projected_New_Fragment extends Fragment {
 											public void onClick(
 													SweetAlertDialog sDialog) {
 												Intent intent = new Intent(
-														act,
+														getActivity(),
 														NavigationActivity.class);
-												act.startActivity(intent);
-												((Activity) act).finish();
+												getActivity().startActivity(intent);
+												((Activity) getActivity()).finish();
 
 												sDialog.dismiss();
 											}
@@ -273,7 +268,7 @@ public class Projected_New_Fragment extends Fragment {
 						dialog.show();
 
 					} else {
-						dialog = new SweetAlertDialog(act,
+						dialog = new SweetAlertDialog(getActivity(),
 								SweetAlertDialog.WARNING_TYPE)
 								.setTitleText("Oops")
 								.setContentText("Does not get Proper Response.")
@@ -284,10 +279,10 @@ public class Projected_New_Fragment extends Fragment {
 											public void onClick(
 													SweetAlertDialog sDialog) {
 												Intent intent = new Intent(
-														act,
+														getActivity(),
 														NavigationActivity.class);
-												act.startActivity(intent);
-												((Activity) act).finish();
+												getActivity().startActivity(intent);
+												((Activity) getActivity()).finish();
 
 												sDialog.dismiss();
 											}
@@ -304,5 +299,5 @@ public class Projected_New_Fragment extends Fragment {
 
 		}
 	}
-
+  
 }

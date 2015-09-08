@@ -12,11 +12,9 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.mcerp.main.R;
 import com.mcerp.model.ProjectCostEditSheetModel;
-import com.mcerp.model.ProjectCostGetSheetModel;
 
 public class Project_Cost_Get_Sheet_Edit_Adapter extends BaseAdapter {
 	GetSheetEditData context;
@@ -99,7 +97,7 @@ public class Project_Cost_Get_Sheet_Edit_Adapter extends BaseAdapter {
 				intent.putExtra("SheetID", arraylistdata.get(position)
 						.getSheet_id());
 				context.startActivity(intent);
-				context.finish();
+			
 
 			}
 		});

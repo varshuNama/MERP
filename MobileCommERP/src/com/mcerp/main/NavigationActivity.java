@@ -43,7 +43,6 @@ import com.mcerp.gts.Complete_Training;
 import com.mcerp.gts.Gts_View_Training_Report;
 import com.mcerp.model.HomeModel;
 import com.mcerp.notification.InboxNotificationActivity;
-import com.mcerp.notification.SentNotificationFragment;
 import com.mcerp.notification.WriteNotificationFragment;
 import com.mcerp.projectedcosting.Projected_Costing_Edit_Frament;
 import com.mcerp.projectedcosting.Projected_New_Fragment;
@@ -427,8 +426,7 @@ public class NavigationActivity extends FragmentActivity {
 					case 0:
 						if (connection.isConnectingToInternet()) {
 
-							fragment = new Projected_New_Fragment(
-									NavigationActivity.this);
+							fragment = new Projected_New_Fragment();
 							titletext.setText("Projected Costing New");
 
 						} else {
@@ -439,8 +437,7 @@ public class NavigationActivity extends FragmentActivity {
 					case 1:
 						if (connection.isConnectingToInternet()) {
 
-							fragment = new Projected_Costing_Edit_Frament(
-									NavigationActivity.this);
+							fragment = new Projected_Costing_Edit_Frament();
 							titletext.setText("Edit Projected Costing");
 
 						} else {
@@ -529,6 +526,43 @@ public class NavigationActivity extends FragmentActivity {
 							alertForInternetNotAvail();
 						}
 
+					default:
+						break;
+					}
+					break;
+
+					/***************************************** Notification ************************************************************************/
+
+				case 8:
+					switch (childPosition) {
+					case 0:
+						if (connection.isConnectingToInternet()) {
+
+							fragment = new WriteNotificationFragment();
+							getSupportFragmentManager().beginTransaction()
+									.replace(R.id.content_frame, fragment)
+									.commit();
+							titletext.setText("Write Notification");
+							mDrawerLayout.closeDrawer(expListView);
+
+						} else {
+							alertForInternetNotAvail();
+						}
+
+						break;
+					case 1:
+						if (connection.isConnectingToInternet()) {
+
+							Intent intent = new Intent(NavigationActivity.this,
+									InboxNotificationActivity.class);
+							startActivity(intent);
+							
+						} else {
+							alertForInternetNotAvail();
+						}
+
+						break;
+					
 					default:
 						break;
 					}
@@ -664,59 +698,6 @@ public class NavigationActivity extends FragmentActivity {
 						break;
 					}
 
-					/***************************************** Notification ************************************************************************/
-
-				case 8:
-					switch (childPosition) {
-					case 0:
-						if (connection.isConnectingToInternet()) {
-
-							fragment = new WriteNotificationFragment();
-							getSupportFragmentManager().beginTransaction()
-									.replace(R.id.content_frame, fragment)
-									.commit();
-							titletext.setText("Write Notification");
-							mDrawerLayout.closeDrawer(expListView);
-
-						} else {
-							alertForInternetNotAvail();
-						}
-
-						break;
-					case 1:
-						if (connection.isConnectingToInternet()) {
-
-							Intent intent = new Intent(NavigationActivity.this,
-									InboxNotificationActivity.class);
-							startActivity(intent);
-							/*
-							 * getSupportFragmentManager().beginTransaction()
-							 * .replace(R.id.content_frame, fragment) .commit();
-							 */
-							// titletext.setText("Inbox Notification");
-							/* mDrawerLayout.closeDrawer(expListView); */
-						} else {
-							alertForInternetNotAvail();
-						}
-
-						break;
-					case 2:
-						if (connection.isConnectingToInternet()) {
-							fragment = new SentNotificationFragment();
-							getSupportFragmentManager().beginTransaction()
-									.replace(R.id.content_frame, fragment)
-									.commit();
-							titletext.setText("Sent Notification");
-							mDrawerLayout.closeDrawer(expListView);
-
-						} else {
-							alertForInternetNotAvail();
-						}
-						break;
-					default:
-						break;
-					}
-					break;
 
 				default:
 					break;
@@ -825,8 +806,7 @@ public class NavigationActivity extends FragmentActivity {
 		List<String> notifications_result = new ArrayList<String>();
 		notifications_result.add("Compose");
 		notifications_result.add("Inbox");
-		notifications_result.add("Sent");
-
+		
 		List<String> Reports = new ArrayList<String>();
 		Reports.add("Leave Report");
 		Reports.add("Time Sheet Report");

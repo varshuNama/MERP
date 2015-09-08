@@ -28,8 +28,7 @@ public class GetSheetEditData extends Activity implements OnClickListener {
 	Project_Cost_Get_Sheet_Edit_Adapter adapter;
 	LinearLayout project_cost_back;
 	String responsesubmitdata;
-	ArrayList<String> arraySheetId, arrayResourceCode, arrayQty,
-			arrayUnitprice, arrayTotal;
+	ArrayList<String> arraySheetId, arrayResourceCode, arrayQty,arrayUnitprice, arrayTotal;
 	ConnectionDetector connection;
 	AppPreferences prefs;
 	String project_code, month_year_date;
@@ -45,24 +44,19 @@ public class GetSheetEditData extends Activity implements OnClickListener {
 	}
 
 	private void init() {
-		Dialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE)
-				.setTitleText("Loading");
+		Dialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
 		getlist = (ListView) findViewById(R.id.list_project_cost_edit_sheet);
 		norecord = (TextView) findViewById(R.id.noRecordprojectprojectcost);
-	//	edit_linear = (LinearLayout) findViewById(R.id.edit_project_cost_save);
 		project_cost_back = (LinearLayout) findViewById(R.id.project_cost_back);
-
 		project_cost_back.setOnClickListener(this);
-		//edit_linear.setOnClickListener(this);
 		connection = new ConnectionDetector(this);
-		pDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE)
-				.setTitleText("Loading");
+		pDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
 		prefs = AppPreferences.getInstance(this);
-		active_closed_flag= getIntent().getExtras().getString("ActiveClosedFlag");
+		active_closed_flag = getIntent().getExtras().getString("ActiveClosedFlag");
 		project_code = getIntent().getExtras().getString("ProjectCode");
 		month_year_date = getIntent().getExtras().getString("MonthYear");
 
-		new AsyncTaskProjectCostEditGetSheet(GetSheetEditData.this, Dialog,project_code, month_year_date,active_closed_flag).execute();
+		new AsyncTaskProjectCostEditGetSheet(GetSheetEditData.this, Dialog,project_code, month_year_date, active_closed_flag).execute();
 
 	}
 
@@ -72,11 +66,12 @@ public class GetSheetEditData extends Activity implements OnClickListener {
 		case R.id.project_cost_back:
 			finish();
 			break;
-         }
+		}
 
 	}
-	public void sendDataToProjectCostEdit(GetSheetEditData act, ArrayList<ProjectCostEditSheetModel> arraygetdata)
-	{
+
+	public void sendDataToProjectCostEdit(GetSheetEditData act,
+			ArrayList<ProjectCostEditSheetModel> arraygetdata) {
 		adapter = new Project_Cost_Get_Sheet_Edit_Adapter(act, arraygetdata);
 		getlist.setAdapter(adapter);
 	}

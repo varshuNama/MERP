@@ -3,7 +3,7 @@ package com.mcerp.database;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mcerp.model.Push;
+import com.mcerp.model.PushModel;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -42,7 +42,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	}
 
 	// inserting into push table
-	public void addcontactpush(Push push) {
+	public void addcontactpush(PushModel push) {
 		SQLiteDatabase db = this.getWritableDatabase();
 		ContentValues values = new ContentValues();
 		values.put(KEY_ID, "regId");
@@ -55,8 +55,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	}
 
 	// Get All Messages From Push Table
-	public List<Push> getAllPushMessages() {
-		List<Push> contactList = new ArrayList<Push>();
+	public List<PushModel> getAllPushMessages() {
+		List<PushModel> contactList = new ArrayList<PushModel>();
 
 		String selectQuery = "SELECT  * FROM " + TABLE_PUSH;
 
@@ -65,7 +65,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 		if (cursor.moveToFirst()) {
 			do {
-				Push contact = new Push();
+				PushModel contact = new PushModel();
 				contact.setMsg(cursor.getString(1));
 
 				contactList.add(contact);

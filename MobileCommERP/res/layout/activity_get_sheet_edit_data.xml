@@ -22,7 +22,6 @@
             android:id="@+id/lblListHeader"
             style="@style/header_textView"
             android:text="@string/project_cost_edit" />
-
     </LinearLayout>
 
     <LinearLayout
@@ -45,7 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center_vertical|center_horizontal"
-                android:text="@string/for_the_month"
+                android:text="@string/for_the_cost_month"
                 android:textColor="#FFF"
                 android:textSize="12sp" />
         </LinearLayout>
@@ -76,7 +75,7 @@
                 android:id="@+id/linear4"
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
-                android:gravity="center_vertical|center_horizontal"
+                android:gravity="center_vertical|left"
                 android:text="@string/projectname"
                 android:textColor="#FFF"
                 android:textSize="12sp" />
@@ -97,6 +96,14 @@
                 android:text="@string/total_cost"
                 android:textColor="#FFF"
                 android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l7"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal" >
         </LinearLayout>
     </LinearLayout>
 

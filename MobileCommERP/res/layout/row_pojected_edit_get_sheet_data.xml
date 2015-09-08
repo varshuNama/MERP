@@ -25,7 +25,7 @@
                 android:id="@+id/project_cost_edit_month"
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
-                android:gravity="center_vertical|left"
+                android:gravity="center_vertical|center_horizontal"
                 android:text="a"
                 android:textColor="#000"
                 android:textSize="12sp" />
@@ -73,7 +73,7 @@
                 android:id="@+id/project_cost_edit_totalcost"
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
-                android:gravity="center_vertical|left"
+                android:gravity="center_vertical|center_horizontal"
                 android:text="a"
                 android:textColor="#000"
                 android:textSize="12sp" />
@@ -84,16 +84,14 @@
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
+            android:padding="4dp"
             android:orientation="horizontal" >
 
             <Button
                 android:id="@+id/project_cost_view_button"
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
+                style="@style/linear_submit_button"
                 android:gravity="center_vertical|center_horizontal"
-                android:text="View"
-                android:textColor="#000"
-                android:textSize="12sp" />
+                android:text="View" />
         </LinearLayout>
     </LinearLayout>
 
