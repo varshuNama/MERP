@@ -24,15 +24,16 @@ public class AsyncTaskProjectCostEditGetSheet extends
 	int flag = 0;
 	String strProjCode, strSheetDate;
 	ArrayList<ProjectCostEditSheetModel> arraygetdata;
-	String empemail, empname, empid, messageData;
+	String empemail, empname, empid, messageData,active_flag;
 
 	public AsyncTaskProjectCostEditGetSheet(GetSheetEditData con,
-			SweetAlertDialog Dialog, String strProjCode, String strSheetDate) {
+			SweetAlertDialog Dialog, String strProjCode, String strSheetDate,String active_flag) {
 		act = con;
 		pDialog = Dialog;
 		connection = new ConnectionDetector(con);
 		this.strProjCode = strProjCode;
 		this.strSheetDate = strSheetDate;
+		this.active_flag=active_flag;
 
 	}
 
@@ -51,8 +52,7 @@ public class AsyncTaskProjectCostEditGetSheet extends
 		String message = null, response = null;
 		try {
 			arraygetdata = new ArrayList<ProjectCostEditSheetModel>();
-			response = MethodSoap.SendAndGetProjectCostGetSheet(strProjCode,
-					strSheetDate);
+			response = MethodSoap.ERPProjectCostEditGetData(strProjCode, active_flag,strSheetDate);
 			JSONObject jsonobj = new JSONObject(response);
 			message = jsonobj.getString("message");
 			if (message.equals("success")) {
@@ -63,10 +63,13 @@ public class AsyncTaskProjectCostEditGetSheet extends
 
 					data = new ProjectCostEditSheetModel();
 					obj = jsonarray.getJSONObject(i);
-					data.setMonthdate(obj.getString(""));
-					data.setProjectcode(obj.getString(""));
-					data.setProjectname(obj.getString(""));
-					data.setTotalcost(obj.getString(""));
+					data.setMonthdate(obj.getString("ForTheMonthYear"));
+					data.setProjectcode(obj.getString("ProjCode"));
+					data.setProjectname(obj.getString("Projname"));
+					data.setTotalcost(obj.getString("Cost"));
+					data.setMonth_year_date(obj.getString("MonthYear"));
+					data.setId(obj.getString("Id"));
+					data.setSheet_id(obj.getString("SheetId"));
 
 					arraygetdata.add(data);
 

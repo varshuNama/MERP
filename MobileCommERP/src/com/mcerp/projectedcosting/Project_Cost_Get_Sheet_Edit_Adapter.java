@@ -94,10 +94,10 @@ public class Project_Cost_Get_Sheet_Edit_Adapter extends BaseAdapter {
 				Intent intent = new Intent(context,
 						SaveAfterEditGetSheetData.class);
 
-				intent.putExtra("ProjectCode", arraylistdata.get(position)
-						.getProjectcode());
-				intent.putExtra("MonthYear", arraylistdata.get(position)
-						.getMonthdate());
+				intent.putExtra("CostID", arraylistdata.get(position)
+						.getId());
+				intent.putExtra("SheetID", arraylistdata.get(position)
+						.getSheet_id());
 				context.startActivity(intent);
 				context.finish();
 

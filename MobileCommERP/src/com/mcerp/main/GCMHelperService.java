@@ -20,7 +20,7 @@ import com.mcerp.notification.InboxNotificationActivity;
 import com.mcerp.util.AppPreferences;
 
 public class GCMHelperService extends IntentService {
-	AppPreferences myPrefs;
+
 	public static final int NOTIFICATION_ID = 1;
 	private NotificationManager mNotificationManager;
 	NotificationCompat.Builder builder;
@@ -28,7 +28,7 @@ public class GCMHelperService extends IntentService {
 
 	public GCMHelperService() {
 		super("GCMHelperService");
-		myPrefs = AppPreferences.getInstance(this);
+
 	}
 
 	@Override
@@ -39,7 +39,9 @@ public class GCMHelperService extends IntentService {
 		prefs = AppPreferences.getInstance(this);
 		System.out.println("GCM Got the message = " + intent.getDataString());
 		System.out.println("GCM data = " + gcm.toString());
-		if (extras != null && !extras.isEmpty() && extras.getString("message")!= null && !extras.getString("message").isEmpty()) {
+		if (extras != null && !extras.isEmpty()
+				&& extras.getString("message") != null
+				&& !extras.getString("message").isEmpty()) {
 			sendNotification(extras);
 		}
 		GCMMessegeReceiver.completeWakefulIntent(intent);
@@ -100,7 +102,7 @@ public class GCMHelperService extends IntentService {
 			}
 
 		} catch (Exception e) {
-			
+
 		}
 	}
 

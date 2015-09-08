@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
@@ -26,13 +25,13 @@ import com.mcerp.util.AppPreferences;
 
 public class GetSheetData extends Activity implements OnClickListener {
 	ListView getlist;
-	TextView norecord;
+
 	SweetAlertDialog pDialog;
 	int flag = 0;
-	LinearLayout header, submit_linear;
+	LinearLayout submit_linear;
 	ArrayList<ProjectCostGetSheetModel> array_list;
 	Project_Cost_Get_Sheet_Adapter adapter;
-	LinearLayout project_cost_back;
+	LinearLayout project_cost_get_back;
 	String responsesubmitdata;
 	ArrayList<String> arraySheetId, arrayResourceCode, arrayQty,
 			arrayUnitprice, arrayTotal;
@@ -40,6 +39,7 @@ public class GetSheetData extends Activity implements OnClickListener {
 	AppPreferences prefs;
 	String project_code, month_year_date;
 	SweetAlertDialog Dialog;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 
@@ -49,35 +49,31 @@ public class GetSheetData extends Activity implements OnClickListener {
 	}
 
 	private void init() {
-		Dialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+		Dialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE)
+				.setTitleText("Loading");
 		getlist = (ListView) findViewById(R.id.list_project_cost_get_sheet);
-		norecord = (TextView) findViewById(R.id.noRecordprojectprojectcost);
-		header = (LinearLayout) findViewById(R.id.project_cost_header);
+
 		submit_linear = (LinearLayout) findViewById(R.id.submit_project_cost);
-		project_cost_back = (LinearLayout) findViewById(R.id.project_cost_back);
-		
-		project_cost_back.setOnClickListener(this);
+		project_cost_get_back = (LinearLayout) findViewById(R.id.project_cost_getsheet_back);
+
+		project_cost_get_back.setOnClickListener(this);
 		submit_linear.setOnClickListener(this);
 		connection = new ConnectionDetector(this);
 		pDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE)
 				.setTitleText("Loading");
 		prefs = AppPreferences.getInstance(this);
 		project_code = getIntent().getExtras().getString("ProjectCode");
-		 month_year_date = getIntent().getExtras().getString("MonthYear");
-		
-		 
-		 new AsyncTaskProjectCostGetSheet(GetSheetData.this, Dialog,project_code, month_year_date).execute();
+		month_year_date = getIntent().getExtras().getString("MonthYear");
 
-		
-	
+		new AsyncTaskProjectCostGetSheet(GetSheetData.this, Dialog,
+				project_code, month_year_date).execute();
 
 	}
-	
 
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.project_cost_back:
+		case R.id.project_cost_getsheet_back:
 			finish();
 			break;
 		case R.id.submit_project_cost:
@@ -136,7 +132,7 @@ public class GetSheetData extends Activity implements OnClickListener {
 			String message = null, response = null;
 			try {
 				response = MethodSoap.ERPProjectCostAddNewProjectedCost(
-						prefs.getUserID(), month_year_date,project_code,
+						prefs.getUserID(), month_year_date, project_code,
 						arraySheetId, arrayResourceCode, arrayQty,
 						arrayUnitprice, arrayTotal);
 				JSONObject jsonobj = new JSONObject(response);
@@ -161,7 +157,8 @@ public class GetSheetData extends Activity implements OnClickListener {
 						&& result.equals("success")) {
 					Toast.makeText(GetSheetData.this, responsesubmitdata,
 							Toast.LENGTH_LONG).show();
-					Intent intent=new Intent(GetSheetData.this,GetSheetData.class);
+					Intent intent = new Intent(GetSheetData.this,
+							GetSheetData.class);
 					intent.putExtra("GetSheetData", array_list);
 					intent.putExtra("ProjectCode", project_code);
 					intent.putExtra("MonthYear", month_year_date);
@@ -207,9 +204,16 @@ public class GetSheetData extends Activity implements OnClickListener {
 
 		}
 	}
-	public void sendDataToProjectCost(GetSheetData act, ArrayList<ProjectCostGetSheetModel> arraygetdata)
-	{
+
+	public void sendDataToProjectCost(GetSheetData act,
+			ArrayList<ProjectCostGetSheetModel> arraygetdata) {
 		adapter = new Project_Cost_Get_Sheet_Adapter(act, arraygetdata);
 		getlist.setAdapter(adapter);
+	}
+
+	@Override
+	public void onBackPressed() {
+		super.onBackPressed();
+		finish();
 	}
 }

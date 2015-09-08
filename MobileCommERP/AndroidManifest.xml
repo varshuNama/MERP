@@ -300,7 +300,17 @@
             android:screenOrientation="landscape" >
         </activity>
         <activity
+            android:name="com.mcerp.projectedcosting.SaveAfterEditGetSheetData"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="adjustPan" >
+        </activity>
+        <activity
             android:name="com.mcerp.projectedcosting.GetSheetData"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="adjustPan" >
+        </activity>
+         <activity
+            android:name="com.mcerp.projectedcosting.GetSheetEditData"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="adjustPan" >
         </activity>

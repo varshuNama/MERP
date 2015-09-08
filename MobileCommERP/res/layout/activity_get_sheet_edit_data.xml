@@ -23,16 +23,6 @@
             style="@style/header_textView"
             android:text="@string/project_cost_edit" />
 
-        <LinearLayout
-            android:id="@+id/edit_project_cost_save"
-            style="@style/linear_submit_button" >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/edit"
-                android:textStyle="bold" />
-        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout

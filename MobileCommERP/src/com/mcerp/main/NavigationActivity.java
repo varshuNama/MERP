@@ -428,6 +428,9 @@ public class NavigationActivity extends FragmentActivity {
 
 							fragment = new Projected_New_Fragment(NavigationActivity.this);
 							titletext.setText("Projected Costing New");
+							 getSupportFragmentManager().beginTransaction()
+							  .replace(R.id.content_frame, fragment)
+							 .addToBackStack(null).commit();
 
 						} else {
 							alertForInternetNotAvail();

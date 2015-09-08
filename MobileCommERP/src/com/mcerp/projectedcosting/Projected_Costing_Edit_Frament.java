@@ -46,9 +46,10 @@ public class Projected_Costing_Edit_Frament extends Fragment {
 	int flag;
 	ConnectionDetector connection;
 	AppPreferences prefs;
-	String responseData, ProjectCode;
+	String responseData, ProjectCode,active_closed_flag="0";
 	List<String> strClosedProjectName, strActiveProjectName;
 	ArrayList<ProjectedCostGetData> project_cost_array;
+	
 
 	public Projected_Costing_Edit_Frament(NavigationActivity navigationActivity) {
 		act = navigationActivity;
@@ -102,9 +103,11 @@ public class Projected_Costing_Edit_Frament extends Fragment {
 				if (checkedId == R.id.rd_active) {
 					spin_active.setEnabled(true);
 					spin_closed.setEnabled(false);
+					active_closed_flag="0";
 				} else if (checkedId == R.id.rd_closed) {
 					spin_active.setEnabled(false);
 					spin_closed.setEnabled(true);
+					active_closed_flag="1";
 				}
 
 			}
@@ -157,6 +160,7 @@ public class Projected_Costing_Edit_Frament extends Fragment {
 					}
 				}
 				Intent intent = new Intent(getActivity(), GetSheetEditData.class);
+				intent.putExtra("ActiveClosedFlag",active_closed_flag);
 				intent.putExtra("ProjectCode", ProjectCode);
 				intent.putExtra("MonthYear", fDate);
 				startActivity(intent);

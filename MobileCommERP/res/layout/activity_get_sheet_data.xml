@@ -9,7 +9,7 @@
     <LinearLayout style="@style/header_linear" >
 
         <LinearLayout
-            android:id="@+id/project_cost_back"
+            android:id="@+id/project_cost_getsheet_back"
             style="@style/back_button_image" >
 
             <ImageView
