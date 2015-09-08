@@ -40,6 +40,7 @@ import com.mcerp.fragments.ApplyLeave;
 import com.mcerp.fragments.Home;
 import com.mcerp.gts.Accept_Training;
 import com.mcerp.gts.Complete_Training;
+import com.mcerp.gts.Gts_View_Training_Report;
 import com.mcerp.model.HomeModel;
 import com.mcerp.notification.InboxNotificationActivity;
 import com.mcerp.notification.SentNotificationFragment;
@@ -49,6 +50,7 @@ import com.mcerp.projectedcosting.Projected_New_Fragment;
 import com.mcerp.travel.ApproveTravelView;
 import com.mcerp.travel.NewTravel;
 import com.mcerp.travel.TravelExpensesReportFragment;
+import com.mcerp.travel.TravelExpensesTable_Report;
 import com.mcerp.util.AppPreferences;
 import com.mcerp.util.Utility;
 
@@ -70,7 +72,6 @@ public class NavigationActivity extends FragmentActivity {
 	String Message = null;
 	AppPreferences prefs;
 	LinearLayout linaermain;
-	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +84,7 @@ public class NavigationActivity extends FragmentActivity {
 	}
 
 	private void init() {
-		
+
 		Utility.initFonts(getApplicationContext());
 		prefs = AppPreferences.getInstance(NavigationActivity.this);
 		connection = new ConnectionDetector(NavigationActivity.this);
@@ -93,7 +94,7 @@ public class NavigationActivity extends FragmentActivity {
 		titletext = (TextView) findViewById(R.id.textTitle);
 		if (!prefs.getRegistered()) {
 			prefs.setRegistered(true);
-			
+
 		}
 		response = prefs.getResponse();
 		parseResponse();
@@ -143,7 +144,7 @@ public class NavigationActivity extends FragmentActivity {
 
 					break;
 
-				case 9:
+				case 10:
 					Log.d("Resnsjc", prefs.getRegistered() + "");
 					prefs.setRegistered(false);
 					prefs.setUserID("");
@@ -419,18 +420,16 @@ public class NavigationActivity extends FragmentActivity {
 						break;
 					}
 					break;
-					/*****************************************Projected Costing*******************************************************************/
+				/***************************************** Projected Costing *******************************************************************/
 
 				case 6:
 					switch (childPosition) {
 					case 0:
 						if (connection.isConnectingToInternet()) {
 
-							fragment = new Projected_New_Fragment(NavigationActivity.this);
+							fragment = new Projected_New_Fragment(
+									NavigationActivity.this);
 							titletext.setText("Projected Costing New");
-							 getSupportFragmentManager().beginTransaction()
-							  .replace(R.id.content_frame, fragment)
-							 .addToBackStack(null).commit();
 
 						} else {
 							alertForInternetNotAvail();
@@ -440,7 +439,8 @@ public class NavigationActivity extends FragmentActivity {
 					case 1:
 						if (connection.isConnectingToInternet()) {
 
-							fragment = new Projected_Costing_Edit_Frament(NavigationActivity.this);
+							fragment = new Projected_Costing_Edit_Frament(
+									NavigationActivity.this);
 							titletext.setText("Edit Projected Costing");
 
 						} else {
@@ -450,8 +450,6 @@ public class NavigationActivity extends FragmentActivity {
 						break;
 					case 2:
 						if (connection.isConnectingToInternet()) {
-
-							
 
 						} else {
 							alertForInternetNotAvail();
@@ -463,9 +461,82 @@ public class NavigationActivity extends FragmentActivity {
 					}
 					break;
 
-				/***************************************** HR Policies ************************************************************************/
+				/***************************************** Reports ************************************************************************/
 
 				case 7:
+					switch (childPosition) {
+					case 0:
+						if (connection.isConnectingToInternet()) {
+
+							Intent i = new Intent(NavigationActivity.this,
+									LeaveReport.class);
+
+							startActivity(i);
+
+						} else {
+							alertForInternetNotAvail();
+						}
+
+						break;
+					case 1:
+						if (connection.isConnectingToInternet()) {
+
+							Intent i = new Intent(NavigationActivity.this,
+									ViewTimeSheet.class);
+
+							startActivity(i);
+
+						} else {
+							alertForInternetNotAvail();
+						}
+
+						break;
+					case 2:
+						if (connection.isConnectingToInternet()) {
+
+							Intent i = new Intent(NavigationActivity.this,
+									AssetReport.class);
+
+							startActivity(i);
+
+						} else {
+							alertForInternetNotAvail();
+						}
+
+						break;
+					case 3:
+						if (connection.isConnectingToInternet()) {
+
+							Intent i = new Intent(NavigationActivity.this,
+									TravelExpensesTable_Report.class);
+
+							startActivity(i);
+
+						} else {
+							alertForInternetNotAvail();
+						}
+
+						break;
+					case 4:
+						if (connection.isConnectingToInternet()) {
+
+							Intent i = new Intent(NavigationActivity.this,
+									Gts_View_Training_Report.class);
+
+							startActivity(i);
+
+						} else {
+							alertForInternetNotAvail();
+						}
+
+					default:
+						break;
+					}
+					break;
+
+				/***************************************** HR Policies ************************************************************************/
+
+				case 9:
 					switch (childPosition) {
 					case 0:
 						if (connection.isConnectingToInternet()) {
@@ -701,8 +772,10 @@ public class NavigationActivity extends FragmentActivity {
 		listDataHeader.add("Project Travel");
 		listDataHeader.add("Global Training Schedule");
 		listDataHeader.add("Pojected Cost");
-		listDataHeader.add("HR Policies");
+		listDataHeader.add("Reports");
 		listDataHeader.add("Notifications");
+		listDataHeader.add("HR Policies");
+
 		listDataHeader.add("Logout");
 
 		// Adding child data
@@ -733,7 +806,7 @@ public class NavigationActivity extends FragmentActivity {
 		Global_Training_Schedule.add("Accept Training");
 		Global_Training_Schedule.add("Complete Training");
 		Global_Training_Schedule.add("View");
-		
+
 		List<String> projected_cost = new ArrayList<String>();
 		projected_cost.add("New");
 		projected_cost.add("Edit");
@@ -754,6 +827,14 @@ public class NavigationActivity extends FragmentActivity {
 		notifications_result.add("Inbox");
 		notifications_result.add("Sent");
 
+		List<String> Reports = new ArrayList<String>();
+		Reports.add("Leave Report");
+		Reports.add("Time Sheet Report");
+		Reports.add("Assert Report");
+		Reports.add("Project Travel Report");
+		Reports.add("GTS Report");
+		Reports.add("Project Cost Report");
+
 		List<String> wk = new ArrayList<String>();
 		listDataChild.put(listDataHeader.get(0), wk); // Header,
 		listDataChild.put(listDataHeader.get(1), Leave_Portal_list);
@@ -762,9 +843,11 @@ public class NavigationActivity extends FragmentActivity {
 		listDataChild.put(listDataHeader.get(4), Project_Travel);
 		listDataChild.put(listDataHeader.get(5), Global_Training_Schedule);
 		listDataChild.put(listDataHeader.get(6), projected_cost);
-		listDataChild.put(listDataHeader.get(7), hr_policies_list);
+		listDataChild.put(listDataHeader.get(7), Reports);
 		listDataChild.put(listDataHeader.get(8), notifications_result);
-		listDataChild.put(listDataHeader.get(9), wk);
+		listDataChild.put(listDataHeader.get(9), hr_policies_list);
+
+		listDataChild.put(listDataHeader.get(10), wk);
 
 	}
 
