@@ -7,6 +7,7 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ import android.widget.ExpandableListView.OnGroupExpandListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 import com.mcerp.assets.AcceptAssets;
@@ -155,6 +157,7 @@ public class NavigationActivity extends FragmentActivity {
 					prefs.setMonthName("");
 					prefs.setProjectMgr("");
 					prefs.setMonthYear("");
+					prefs.setReportingMgr("");
 
 					Intent intent = new Intent(NavigationActivity.this,
 							LoginActivity.class);
@@ -423,6 +426,7 @@ public class NavigationActivity extends FragmentActivity {
 
 				case 6:
 					switch (childPosition) {
+
 					case 0:
 						if (connection.isConnectingToInternet()) {
 
@@ -531,19 +535,40 @@ public class NavigationActivity extends FragmentActivity {
 					}
 					break;
 
-					/***************************************** Notification ************************************************************************/
+				/***************************************** Notification ************************************************************************/
 
 				case 8:
 					switch (childPosition) {
 					case 0:
 						if (connection.isConnectingToInternet()) {
 
-							fragment = new WriteNotificationFragment();
-							getSupportFragmentManager().beginTransaction()
-									.replace(R.id.content_frame, fragment)
-									.commit();
-							titletext.setText("Write Notification");
-							mDrawerLayout.closeDrawer(expListView);
+							if (prefs.getUserID().equals("17")
+									|| prefs.getUserID().equals("386")) {
+
+								fragment = new WriteNotificationFragment();
+								getSupportFragmentManager().beginTransaction()
+										.replace(R.id.content_frame, fragment)
+										.commit();
+								titletext.setText("Write Notification");
+								mDrawerLayout.closeDrawer(expListView);
+							} else {
+								new SweetAlertDialog(NavigationActivity.this,
+										SweetAlertDialog.NORMAL_TYPE)
+										.setTitleText("Sorry")
+										.setContentText(
+												"you are not authorized to compose message.")
+										.setConfirmText("ok")
+										.setConfirmClickListener(
+												new SweetAlertDialog.OnSweetClickListener() {
+													@Override
+													public void onClick(
+															SweetAlertDialog sDialog) {
+
+														sDialog.dismiss();
+													}
+												}).show();
+
+							}
 
 						} else {
 							alertForInternetNotAvail();
@@ -556,13 +581,13 @@ public class NavigationActivity extends FragmentActivity {
 							Intent intent = new Intent(NavigationActivity.this,
 									InboxNotificationActivity.class);
 							startActivity(intent);
-							
+
 						} else {
 							alertForInternetNotAvail();
 						}
 
 						break;
-					
+
 					default:
 						break;
 					}
@@ -698,7 +723,6 @@ public class NavigationActivity extends FragmentActivity {
 						break;
 					}
 
-
 				default:
 					break;
 				}
@@ -787,11 +811,12 @@ public class NavigationActivity extends FragmentActivity {
 		Global_Training_Schedule.add("Accept Training");
 		Global_Training_Schedule.add("Complete Training");
 		Global_Training_Schedule.add("View");
-
 		List<String> projected_cost = new ArrayList<String>();
-		projected_cost.add("New");
-		projected_cost.add("Edit");
-		projected_cost.add("Report");
+		if (prefs.getReportingMgr().equals("Y")) {
+			projected_cost.add("New");
+			projected_cost.add("Edit");
+			projected_cost.add("Report");
+		}
 
 		List<String> hr_policies_list = new ArrayList<String>();
 		hr_policies_list.add("Human Resource Policy Manua");
@@ -806,7 +831,7 @@ public class NavigationActivity extends FragmentActivity {
 		List<String> notifications_result = new ArrayList<String>();
 		notifications_result.add("Compose");
 		notifications_result.add("Inbox");
-		
+
 		List<String> Reports = new ArrayList<String>();
 		Reports.add("Leave Report");
 		Reports.add("Time Sheet Report");
@@ -938,6 +963,7 @@ public class NavigationActivity extends FragmentActivity {
 					HomeModel modeldata = new HomeModel();
 					modeldata.setUserId(json.getString("UserId"));
 					modeldata.setEmpCode(json.getString("EmpCode"));
+					modeldata.setReportingManager(json.getString("ReportingMgr"));
 					modeldata.setEmail(json.getString("Email"));
 					modeldata.setEmpName(json.getString("EmpName"));
 					modeldata.setProject(json.getString("Project"));
@@ -983,6 +1009,7 @@ public class NavigationActivity extends FragmentActivity {
 					prefs.setMonthName(homearray.get(0).getMonthName());
 					prefs.setMonthYear(homearray.get(0).getMonthYear());
 					prefs.setProjectMgr(homearray.get(0).getProjMgr());
+					prefs.setReportingMgr(homearray.get(0).getReportingManager());
 
 				}
 			} else {
@@ -1000,26 +1027,6 @@ public class NavigationActivity extends FragmentActivity {
 
 	}
 
-	/*
-	 * @Override public void onBackPressed() {
-	 * 
-	 * new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
-	 * .setTitleText("Exit ?") .setContentText("Do you want to exit.")
-	 * .setCancelText("No,cancel plz!") .setConfirmText("Yes,exit it!")
-	 * .showCancelButton(true) .setCancelClickListener( new
-	 * SweetAlertDialog.OnSweetClickListener() {
-	 * 
-	 * @Override public void onClick(SweetAlertDialog sDialog) {
-	 * sDialog.dismiss(); } }) .setConfirmClickListener( new
-	 * SweetAlertDialog.OnSweetClickListener() {
-	 * 
-	 * @Override public void onClick(SweetAlertDialog sDialog) {
-	 * NavigationActivity.super.onBackPressed(); sDialog.dismiss();
-	 * 
-	 * } }).show();
-	 * 
-	 * }
-	 */
 	public void alertForInternetNotAvail() {
 		new SweetAlertDialog(NavigationActivity.this,
 				SweetAlertDialog.ERROR_TYPE).setTitleText("Oops...")

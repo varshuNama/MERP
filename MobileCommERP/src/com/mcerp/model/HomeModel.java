@@ -8,7 +8,14 @@ public class HomeModel implements Serializable {
 	private String EmpCode;
 	private String Email;
 	private String EmpName;
+	private String ReportingManager;
 	
+	public String getReportingManager() {
+		return ReportingManager;
+	}
+	public void setReportingManager(String reportingManager) {
+		ReportingManager = reportingManager;
+	}
 	private String Project;
 	private String ProjMgr;
 	private String Location;

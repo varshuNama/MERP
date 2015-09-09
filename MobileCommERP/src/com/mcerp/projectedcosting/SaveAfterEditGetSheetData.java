@@ -101,6 +101,7 @@ public class SaveAfterEditGetSheetData extends Activity implements
 						arrayUnitprice.add(item.getUnit_test());
 						arrayCostId.add(item.getCostId());
 						arrayAmount.add(item.getTatalcost());
+						arrayDetailId.add(item.getDetailId());
 					}
 				}
 			}

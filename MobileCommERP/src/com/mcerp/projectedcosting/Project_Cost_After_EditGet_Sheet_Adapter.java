@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import android.annotation.SuppressLint;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,8 +63,7 @@ public class Project_Cost_After_EditGet_Sheet_Adapter extends BaseAdapter {
 	public View getView(final int position, View convertView, ViewGroup parent) {
 		View view = convertView;
 		final ViewHolder viewHolder;
-		// if (convertView == null) {
-
+		
 		LayoutInflater mInflater = context.getLayoutInflater();
 		view = mInflater.inflate(
 				R.layout.row_pojected_after_edit_save_get_sheet_data, null);
@@ -102,8 +102,8 @@ public class Project_Cost_After_EditGet_Sheet_Adapter extends BaseAdapter {
 			@Override
 			public void onTextChanged(CharSequence arg0, int arg1, int arg2,
 					int arg3) {
-				viewHolder.total_cost.setText(addNumbers(viewHolder));
-				arraylistdata.get(position).setTatalcost(addNumbers(viewHolder));
+				viewHolder.total_cost.setText(addNumbers(viewHolder,position));
+			//	arraylistdata.get(position).setTatalcost(addNumbers(viewHolder));
 
 			}
 
@@ -126,9 +126,8 @@ public class Project_Cost_After_EditGet_Sheet_Adapter extends BaseAdapter {
 			@Override
 			public void onTextChanged(CharSequence arg0, int arg1, int arg2,
 					int arg3) {
-				viewHolder.total_cost.setText(addNumbers(viewHolder));
-				arraylistdata.get(position)
-						.setTatalcost(addNumbers(viewHolder));
+				viewHolder.total_cost.setText(addNumbers(viewHolder,position));
+			//	arraylistdata.get(position).setTatalcost(addNumbers(viewHolder));
 			}
 
 			@Override
@@ -157,12 +156,13 @@ public class Project_Cost_After_EditGet_Sheet_Adapter extends BaseAdapter {
 		return view;
 	}
 
-	private String addNumbers(ViewHolder viewHolder) {
+	private String addNumbers(ViewHolder viewHolder,int pos) {
 
 		String result = "0";
 		try {
 			int number1;
 			int number2;
+			Log.d("QuantityNumber", viewHolder.quantity.getText().toString());
 			if (viewHolder.quantity.getText().toString() != ""
 					&& viewHolder.quantity.getText().length() > 0) {
 				number1 = Integer.parseInt(viewHolder.quantity.getText()
@@ -170,6 +170,7 @@ public class Project_Cost_After_EditGet_Sheet_Adapter extends BaseAdapter {
 			} else {
 				number1 = 0;
 			}
+			Log.d("UnitPriceNumber", viewHolder.unit_price.getText().toString());
 			if (viewHolder.unit_price.getText().toString() != ""
 					&& viewHolder.unit_price.getText().length() > 0) {
 				number2 = Integer.parseInt(viewHolder.unit_price.getText()
@@ -177,8 +178,9 @@ public class Project_Cost_After_EditGet_Sheet_Adapter extends BaseAdapter {
 			} else {
 				number2 = 0;
 			}
-
+			
 			result = Integer.toString(number1 * number2);
+			arraylistdata.get(pos).setTatalcost(result);
 		} catch (Exception e) {
               e.printStackTrace();
 		}

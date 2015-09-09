@@ -1211,4 +1211,25 @@ public class MethodSoap {
 		SoapPrimitive response = (SoapPrimitive) soapEnvelope.getResponse();
 		return response.toString();
 	}
+	
+	/************* Compose Notification Message ***************************/
+	public static String sendComposeNotificationMsg(String userid, String sub,
+			String message) throws XmlPullParserException,
+			IOException {
+		SoapObject request = new SoapObject(NAMESPACE, "Notification_Compose");
+		request.addProperty("strEmpId", userid);
+		request.addProperty("strSubject", sub);
+		request.addProperty("strDescription",message);
+		
+		SoapSerializationEnvelope soapEnvelope = new SoapSerializationEnvelope(
+				SoapEnvelope.VER12);
+		soapEnvelope.dotNet = true;
+		soapEnvelope.setOutputSoapObject(request);
+		System.setProperty("http.keepAlive", "false");
+		HttpTransportSE htse = new HttpTransportSE(Constant.BaseUrl);
+		htse.call("http://tempuri.org/Notification_Compose", soapEnvelope, null);
+		SoapPrimitive response = (SoapPrimitive) soapEnvelope.getResponse();
+		return response.toString();
+	}
+
 }

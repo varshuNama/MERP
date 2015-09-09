@@ -13,7 +13,7 @@ public class AppPreferences {
 	public  Editor mEditor;
 
 	enum SharedPreferncesKeys {
-		UserID,Registered,GCMRegID,UserName,Password,Response,EmpCode,EmpName,ToWhich,Flag,MonthName,ProjectMgr,MonthYear,MailDesc,whichScreen;
+		UserID,Registered,GCMRegID,UserName,Password,Response,EmpCode,EmpName,ToWhich,Flag,MonthName,ProjectMgr,MonthYear,MailDesc,whichScreen,ReportingMgr;
 	}
 
 	/**
@@ -159,5 +159,13 @@ public class AppPreferences {
 	}
 	public String getGCMRegID() {
 		return mPreferences.getString(SharedPreferncesKeys.GCMRegID.toString(),"");
+	}
+	
+	public void setReportingMgr(String ReportingMgr) {
+		mEditor.putString(SharedPreferncesKeys.ReportingMgr.toString(), ReportingMgr);
+		mEditor.commit();
+	}
+	public String getReportingMgr() {
+		return mPreferences.getString(SharedPreferncesKeys.ReportingMgr.toString(),"");
 	}
 }
