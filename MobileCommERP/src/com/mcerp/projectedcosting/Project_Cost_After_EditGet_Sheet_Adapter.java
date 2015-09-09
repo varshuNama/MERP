@@ -157,15 +157,18 @@ public class Project_Cost_After_EditGet_Sheet_Adapter extends BaseAdapter {
 	}
 
 	private String addNumbers(ViewHolder viewHolder,int pos) {
+		
+		double result1 = 0;
+		String result = String.valueOf(result1);
 
-		String result = "0";
+		//String result = "0";
 		try {
-			int number1;
-			int number2;
+			double  number1;
+			double  number2;
 			Log.d("QuantityNumber", viewHolder.quantity.getText().toString());
 			if (viewHolder.quantity.getText().toString() != ""
 					&& viewHolder.quantity.getText().length() > 0) {
-				number1 = Integer.parseInt(viewHolder.quantity.getText()
+				number1 = Double.parseDouble (viewHolder.quantity.getText()
 						.toString());
 			} else {
 				number1 = 0;
@@ -173,14 +176,14 @@ public class Project_Cost_After_EditGet_Sheet_Adapter extends BaseAdapter {
 			Log.d("UnitPriceNumber", viewHolder.unit_price.getText().toString());
 			if (viewHolder.unit_price.getText().toString() != ""
 					&& viewHolder.unit_price.getText().length() > 0) {
-				number2 = Integer.parseInt(viewHolder.unit_price.getText()
+				number2 = Double.parseDouble(viewHolder.unit_price.getText()
 						.toString());
 			} else {
 				number2 = 0;
 			}
 			
-			result = Integer.toString(number1 * number2);
-			arraylistdata.get(pos).setTatalcost(result);
+			result = Double.toString(number1 * number2);
+		//	arraylistdata.get(pos).setTatalcost(result);
 		} catch (Exception e) {
               e.printStackTrace();
 		}
