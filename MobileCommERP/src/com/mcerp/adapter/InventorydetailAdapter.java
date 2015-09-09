@@ -1,14 +1,10 @@
 package com.mcerp.adapter;
 
-import java.io.File;
-import java.sql.Date;
 import java.util.ArrayList;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Environment;
-import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -17,7 +13,6 @@ import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -55,7 +50,7 @@ public class InventorydetailAdapter extends BaseAdapter {
 	class ViewHolder {
 		public TextView assert_name_txt, assert_categoryname_txt,
 		assert_sr_no_txt, assert_tag_no_txt;
-		public ImageView img_photo;
+	//	public ImageView img_photo;
 		
 		EditText edit_barcode;
 
@@ -87,7 +82,7 @@ public class InventorydetailAdapter extends BaseAdapter {
 		LayoutInflater mInflater = act.getLayoutInflater();
 		view = mInflater.inflate(R.layout.inventory_row_layout, null);
 		viewHolder = new ViewHolder();
-		viewHolder.img_photo=(ImageView) view.findViewById(R.id.img_photo);
+		//viewHolder.img_photo=(ImageView) view.findViewById(R.id.img_photo);
 		viewHolder.assert_name_txt = (TextView) view
 				.findViewById(R.id.inventory_assert_type_txt);
 
@@ -107,14 +102,14 @@ public class InventorydetailAdapter extends BaseAdapter {
 				.findViewById(R.id.inventory_checkbox);
 		viewHolder.inventory_scan_btn_layout = (LinearLayout) view
 				.findViewById(R.id.inventory_scan_btn_layout);
-		viewHolder.img_photo.setOnClickListener(new OnClickListener() {
+		/*viewHolder.img_photo.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				//startPhotoTaker();
 				
 			}
-		});
+		});*/
 
 		viewHolder.inventory_scan_btn_layout
 		.setOnClickListener(new OnClickListener() {
