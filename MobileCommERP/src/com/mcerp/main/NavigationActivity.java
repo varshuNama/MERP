@@ -408,11 +408,6 @@ public class NavigationActivity extends FragmentActivity {
 							fragment = new com.mcerp.gts.Gts_View_Training_Fragment();
 							titletext.setText("GTS View");
 
-							/*
-							 * getSupportFragmentManager().beginTransaction()
-							 * .replace(R.id.content_frame, fragment)
-							 * .addToBackStack(null).commit();
-							 */
 						} else {
 							alertForInternetNotAvail();
 						}
@@ -835,7 +830,7 @@ public class NavigationActivity extends FragmentActivity {
 		List<String> Reports = new ArrayList<String>();
 		Reports.add("Leave Report");
 		Reports.add("Time Sheet Report");
-		Reports.add("Assert Report");
+		Reports.add("Asset Report");
 		Reports.add("Project Travel Report");
 		Reports.add("GTS Report");
 		Reports.add("Project Cost Report");
@@ -963,7 +958,8 @@ public class NavigationActivity extends FragmentActivity {
 					HomeModel modeldata = new HomeModel();
 					modeldata.setUserId(json.getString("UserId"));
 					modeldata.setEmpCode(json.getString("EmpCode"));
-					modeldata.setReportingManager(json.getString("ReportingMgr"));
+					modeldata.setReportingManager(json
+							.getString("ReportingMgr"));
 					modeldata.setEmail(json.getString("Email"));
 					modeldata.setEmpName(json.getString("EmpName"));
 					modeldata.setProject(json.getString("Project"));
@@ -1009,7 +1005,8 @@ public class NavigationActivity extends FragmentActivity {
 					prefs.setMonthName(homearray.get(0).getMonthName());
 					prefs.setMonthYear(homearray.get(0).getMonthYear());
 					prefs.setProjectMgr(homearray.get(0).getProjMgr());
-					prefs.setReportingMgr(homearray.get(0).getReportingManager());
+					prefs.setReportingMgr(homearray.get(0)
+							.getReportingManager());
 
 				}
 			} else {
