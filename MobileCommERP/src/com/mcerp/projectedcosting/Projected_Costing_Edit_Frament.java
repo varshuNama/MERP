@@ -23,6 +23,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.TextView;
 import cn.pedant.SweetAlert.SweetAlertDialog;
@@ -126,40 +127,29 @@ public class Projected_Costing_Edit_Frament extends Fragment {
 		submit_btn.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
-
-				if (project_cost_array.size() > 0 && project_cost_array != null) {
-					for (int i = 0; i < project_cost_array.size(); i++) {
-						if (spin_active.isEnabled()) {
-							if (spin_active
-									.getText()
-									.toString()
-									.trim()
-									.equals(project_cost_array.get(i)
-											.getProjectName())) {
-								ProjectCode = project_cost_array.get(i)
-										.getProjectCode();
-								break;
-							}
-						} else if (spin_closed.isEnabled()) {
-							if (spin_closed
-									.getText()
-									.toString()
-									.trim()
-									.equals(project_cost_array.get(i)
-											.getProjectName())) {
-								ProjectCode = project_cost_array.get(i)
-										.getProjectCode();
-								break;
-							}
-						}
-					}
+				
+				if (spin_active.isEnabled()
+						&& spin_active.getText().toString().trim().equals("")) {
+					Toast.makeText(getActivity(),
+							"Please select one Active Project from list.",
+							Toast.LENGTH_LONG).show();
+					
+				} else if (spin_closed.isEnabled()
+						&& spin_closed.getText().toString().trim().equals("")) {
+					Toast.makeText(getActivity(),
+							"Please select one Closed Project from list.",
+							Toast.LENGTH_LONG).show();
+					
+				} 
+				else {
+					getSpinValue();
+					Intent intent = new Intent(getActivity(),
+							GetSheetData.class);
+					intent.putExtra("ProjectCode", ProjectCode);
+					intent.putExtra("MonthYear", fDate);
+					startActivity(intent);
 				}
-				Intent intent = new Intent(getActivity(),
-						GetSheetEditData.class);
-				intent.putExtra("ActiveClosedFlag", active_closed_flag);
-				intent.putExtra("ProjectCode", ProjectCode);
-				intent.putExtra("MonthYear", fDate);
-				startActivity(intent);
+
 
 			}
 		});
@@ -304,5 +294,25 @@ public class Projected_Costing_Edit_Frament extends Fragment {
 
 		}
 	}
-
+	void getSpinValue() {
+		if (project_cost_array.size() > 0 && project_cost_array != null) {
+			for (int i = 0; i < project_cost_array.size(); i++) {
+				if (spin_active.isEnabled()) {
+					if (spin_active.getText().toString().trim()
+							.equals(project_cost_array.get(i).getProjectName())) {
+						ProjectCode = project_cost_array.get(i)
+								.getProjectCode();
+						break;
+					}
+				} else if (spin_closed.isEnabled()) {
+					if (spin_closed.getText().toString().trim()
+							.equals(project_cost_array.get(i).getProjectName())) {
+						ProjectCode = project_cost_array.get(i)
+								.getProjectCode();
+						break;
+					}
+				}
+			}
+		}
+	}
 }

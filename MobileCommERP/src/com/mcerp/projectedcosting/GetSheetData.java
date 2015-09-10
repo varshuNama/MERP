@@ -83,9 +83,7 @@ public class GetSheetData extends Activity implements OnClickListener {
 			arrayUnitprice = new ArrayList<String>();
 			arrayTotal = new ArrayList<String>();
 			if (adapter != null) {
-				for (Iterator<ProjectCostGetSheetModel> i = (adapter.getList())
-						.iterator(); i.hasNext();) {
-
+				for (Iterator<ProjectCostGetSheetModel> i = (adapter.getList()).iterator(); i.hasNext();) {
 					ProjectCostGetSheetModel item = i.next();
 					if (!item.isCheckboxstatus() == false) {
 						arraySheetId.add(item.getSheetId());

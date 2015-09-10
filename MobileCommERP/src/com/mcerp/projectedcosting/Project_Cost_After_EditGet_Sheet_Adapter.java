@@ -102,8 +102,8 @@ public class Project_Cost_After_EditGet_Sheet_Adapter extends BaseAdapter {
 			@Override
 			public void onTextChanged(CharSequence arg0, int arg1, int arg2,
 					int arg3) {
-				viewHolder.total_cost.setText(addNumbers(viewHolder,position));
-			//	arraylistdata.get(position).setTatalcost(addNumbers(viewHolder));
+				viewHolder.total_cost.setText(addNumbers(viewHolder));
+		arraylistdata.get(position).setTatalcost(addNumbers(viewHolder));
 
 			}
 
@@ -126,8 +126,8 @@ public class Project_Cost_After_EditGet_Sheet_Adapter extends BaseAdapter {
 			@Override
 			public void onTextChanged(CharSequence arg0, int arg1, int arg2,
 					int arg3) {
-				viewHolder.total_cost.setText(addNumbers(viewHolder,position));
-			//	arraylistdata.get(position).setTatalcost(addNumbers(viewHolder));
+				viewHolder.total_cost.setText(addNumbers(viewHolder));
+			arraylistdata.get(position).setTatalcost(addNumbers(viewHolder));
 			}
 
 			@Override
@@ -156,7 +156,7 @@ public class Project_Cost_After_EditGet_Sheet_Adapter extends BaseAdapter {
 		return view;
 	}
 
-	private String addNumbers(ViewHolder viewHolder,int pos) {
+	private String addNumbers(ViewHolder viewHolder) {
 		
 		double result1 = 0;
 		String result = String.valueOf(result1);
@@ -183,7 +183,7 @@ public class Project_Cost_After_EditGet_Sheet_Adapter extends BaseAdapter {
 			}
 			
 			result = Double.toString(number1 * number2);
-		//	arraylistdata.get(pos).setTatalcost(result);
+		 //  arraylistdata.get(pos).setTatalcost(result);
 		} catch (Exception e) {
               e.printStackTrace();
 		}

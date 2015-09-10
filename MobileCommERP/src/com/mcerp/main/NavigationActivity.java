@@ -538,7 +538,7 @@ public class NavigationActivity extends FragmentActivity {
 						if (connection.isConnectingToInternet()) {
 
 							if (prefs.getUserID().equals("17")
-									|| prefs.getUserID().equals("386")) {
+									|| prefs.getUserID().equals("386") ||  prefs.getUserID().equals("1494") ) {
 
 								fragment = new WriteNotificationFragment();
 								getSupportFragmentManager().beginTransaction()

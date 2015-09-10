@@ -145,6 +145,7 @@ public class SaveAfterEditGetSheetData extends Activity implements
 						arrayCostId, arraySheetId, arrayResourceId, arrayQty,
 						arrayUnitprice, arrayAmount);
 				JSONObject jsonobj = new JSONObject(response);
+				
 				message = jsonobj.getString("message");
 				responsesubmitdata = jsonobj.getString("DataArr");
 
