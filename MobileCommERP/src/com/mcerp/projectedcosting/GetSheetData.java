@@ -122,6 +122,9 @@ public class GetSheetData extends Activity implements OnClickListener {
 			pDialog = new SweetAlertDialog(GetSheetData.this,
 					SweetAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
 			pDialog.show();
+			pDialog.setCancelable(false);
+			pDialog.setCanceledOnTouchOutside(false);
+
 
 		}
 

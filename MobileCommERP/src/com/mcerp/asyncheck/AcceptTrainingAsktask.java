@@ -39,6 +39,9 @@ public class AcceptTrainingAsktask extends AsyncTask<String, String, String> {
 		pDialog = new SweetAlertDialog(act, SweetAlertDialog.PROGRESS_TYPE)
 				.setTitleText("Loading");
 		pDialog.show();
+		pDialog.setCancelable(false);
+		pDialog.setCanceledOnTouchOutside(false);
+
 
 	}
 

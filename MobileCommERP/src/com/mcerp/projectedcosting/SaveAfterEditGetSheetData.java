@@ -133,6 +133,9 @@ public class SaveAfterEditGetSheetData extends Activity implements
 			pDialog = new SweetAlertDialog(SaveAfterEditGetSheetData.this,
 					SweetAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
 			pDialog.show();
+			pDialog.setCancelable(false);
+			pDialog.setCanceledOnTouchOutside(false);
+
 
 		}
 

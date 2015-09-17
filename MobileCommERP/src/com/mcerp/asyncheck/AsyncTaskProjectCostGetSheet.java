@@ -96,18 +96,49 @@ AsyncTask<String, String, String> {
 
 
 			} else if (result.equals("fail")) {
-				new SweetAlertDialog(act, SweetAlertDialog.NORMAL_TYPE)
-				.setTitleText("Oops...")
-				.setContentText(messageData).show();
+				
 				pDialog.dismiss();
+				dialog = new SweetAlertDialog(act,
+						SweetAlertDialog.NORMAL_TYPE)
+				.setTitleText("Oops")
+				.setContentText(messageData)
+				.setConfirmText("ok")
+				.setConfirmClickListener(
+						new SweetAlertDialog.OnSweetClickListener() {
+							@Override
+							public void onClick(
+									SweetAlertDialog sDialog) {
+								
+								((Activity) act).finish();
+
+								sDialog.dismiss();
+							}
+						});
+				dialog.show();
+
 
 			} else if (!connection.isConnectingToInternet()) {
 
-				new SweetAlertDialog(act, SweetAlertDialog.ERROR_TYPE)
-				.setTitleText("Oops...")
-				.setContentText("Internet Connection not available!")
-				.show();
+				
 				pDialog.dismiss();
+				dialog = new SweetAlertDialog(act,
+						SweetAlertDialog.WARNING_TYPE)
+				.setTitleText("Oops")
+				.setContentText("Internet Connection not available!")
+				.setConfirmText("ok")
+				.setConfirmClickListener(
+						new SweetAlertDialog.OnSweetClickListener() {
+							@Override
+							public void onClick(
+									SweetAlertDialog sDialog) {
+								
+								((Activity) act).finish();
+
+								sDialog.dismiss();
+							}
+						});
+				dialog.show();
+
 			} else {
 				pDialog.dismiss();
 				if (flag == 1) {
@@ -123,9 +154,7 @@ AsyncTask<String, String, String> {
 								@Override
 								public void onClick(
 										SweetAlertDialog sDialog) {
-									Intent intent = new Intent(act,
-											NavigationActivity.class);
-									act.startActivity(intent);
+									
 									((Activity) act).finish();
 
 									sDialog.dismiss();
@@ -144,9 +173,7 @@ AsyncTask<String, String, String> {
 								@Override
 								public void onClick(
 										SweetAlertDialog sDialog) {
-									Intent intent = new Intent(act,
-											NavigationActivity.class);
-									act.startActivity(intent);
+									
 									((Activity) act).finish();
 
 									sDialog.dismiss();

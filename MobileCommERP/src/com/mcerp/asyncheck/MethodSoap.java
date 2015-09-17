@@ -1211,7 +1211,26 @@ public class MethodSoap {
 		SoapPrimitive response = (SoapPrimitive) soapEnvelope.getResponse();
 		return response.toString();
 	}
-	
+	/************* Get Data For Project Costing Report ***************************/
+	public static String ERPProjectCostReportBindGrid(String projectcode, String mthyr,
+			String flag,String qflag) throws XmlPullParserException,
+			IOException {
+		SoapObject request = new SoapObject(NAMESPACE, "ERP_ProjectCost_Report_BindGrid");
+		request.addProperty("strProjCode", projectcode);
+		request.addProperty("strMY", mthyr);
+		request.addProperty("strFlag",flag);
+		request.addProperty("strQType",qflag);
+		
+		SoapSerializationEnvelope soapEnvelope = new SoapSerializationEnvelope(
+				SoapEnvelope.VER12);
+		soapEnvelope.dotNet = true;
+		soapEnvelope.setOutputSoapObject(request);
+		System.setProperty("http.keepAlive", "false");
+		HttpTransportSE htse = new HttpTransportSE(Constant.BaseUrl);
+		htse.call("http://tempuri.org/ERP_ProjectCost_Report_BindGrid", soapEnvelope, null);
+		SoapPrimitive response = (SoapPrimitive) soapEnvelope.getResponse();
+		return response.toString();
+	}
 	/************* Compose Notification Message ***************************/
 	public static String sendComposeNotificationMsg(String userid, String sub,
 			String message) throws XmlPullParserException,
@@ -1231,5 +1250,6 @@ public class MethodSoap {
 		SoapPrimitive response = (SoapPrimitive) soapEnvelope.getResponse();
 		return response.toString();
 	}
-
+	
+	
 }

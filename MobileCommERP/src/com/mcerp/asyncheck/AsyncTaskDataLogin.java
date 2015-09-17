@@ -9,7 +9,7 @@ import android.os.AsyncTask;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 import com.mcerp.connection.ConnectionDetector;
-import com.mcerp.fragments.Home;
+import com.mcerp.main.Home;
 import com.mcerp.main.NavigationActivity;
 import com.mcerp.model.HomeModel;
 import com.mcerp.util.AppPreferences;

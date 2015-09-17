@@ -7,7 +7,7 @@ import org.json.JSONObject;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 import com.mcerp.connection.ConnectionDetector;
-import com.mcerp.main.LeaveCancealReq;
+import com.mcerp.livendtimesheet.LeaveCancealReq;
 import com.mcerp.main.NavigationActivity;
 import com.mcerp.model.LeaveCancealReqModelData;
 
@@ -78,6 +78,9 @@ public class Asynctask_SubmitCancel_Leave_Req extends
 		pDialog = new SweetAlertDialog(context, SweetAlertDialog.PROGRESS_TYPE)
 				.setTitleText("Loading");
 		pDialog.show();
+		pDialog.setCancelable(false);
+		pDialog.setCanceledOnTouchOutside(false);
+
 	}
 
 	@Override

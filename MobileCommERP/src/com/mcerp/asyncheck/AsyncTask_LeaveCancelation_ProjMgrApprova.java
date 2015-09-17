@@ -1,14 +1,17 @@
 package com.mcerp.asyncheck;
 
 import java.util.ArrayList;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import cn.pedant.SweetAlert.SweetAlertDialog;
+
 import com.mcerp.connection.ConnectionDetector;
-import com.mcerp.main.LeaveCancelation_ProjMgrApprova;
+import com.mcerp.livendtimesheet.LeaveCancelation_ProjMgrApprova;
 import com.mcerp.main.NavigationActivity;
 import com.mcerp.model.LeaveCancelation_ProjMgrApprova_Model;
 import com.mcerp.util.AppPreferences;
@@ -38,6 +41,9 @@ public class AsyncTask_LeaveCancelation_ProjMgrApprova extends
 		pDialog = new SweetAlertDialog(act, SweetAlertDialog.PROGRESS_TYPE)
 				.setTitleText("Loading");
 		pDialog.show();
+		pDialog.setCancelable(false);
+		pDialog.setCanceledOnTouchOutside(false);
+
 
 	}
 

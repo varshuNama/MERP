@@ -20,7 +20,7 @@
         android:layout_width="0dp"
         android:layout_height="fill_parent"
         android:layout_weight="1"
-        android:gravity="center"
+        android:gravity="center_vertical|left"
         android:text="Friday"
         android:textColor="@color/textcomman_color"
         android:textSize="12sp" />

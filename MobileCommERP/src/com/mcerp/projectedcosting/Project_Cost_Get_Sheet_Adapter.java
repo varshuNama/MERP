@@ -19,7 +19,7 @@ import com.mcerp.model.ProjectCostGetSheetModel;
 
 public class Project_Cost_Get_Sheet_Adapter extends BaseAdapter {
 	GetSheetData context;
-	static double data = 0.0;
+	
 
 	public static ArrayList<ProjectCostGetSheetModel> arraylistdata = new ArrayList<ProjectCostGetSheetModel>();
 
@@ -65,28 +65,37 @@ public class Project_Cost_Get_Sheet_Adapter extends BaseAdapter {
 	public View getView(final int position, View convertView, ViewGroup parent) {
 		View view = convertView;
 		final ViewHolder viewHolder;
-		//if (convertView == null) {
+		// if (convertView == null) {
 
-			LayoutInflater mInflater = context.getLayoutInflater();
-			view = mInflater
-					.inflate(R.layout.row_pojected_get_sheet_data, null);
-			viewHolder = new ViewHolder();
-			viewHolder.resource_id = (TextView) view
-					.findViewById(R.id.project_cost_getsheet_resourceid);
-			viewHolder.existing_cost = (TextView) view
-					.findViewById(R.id.project_cost_getsheet_existingcost);
+		LayoutInflater mInflater = context.getLayoutInflater();
+		view = mInflater.inflate(R.layout.row_pojected_get_sheet_data, null);
+		viewHolder = new ViewHolder();
+		viewHolder.resource_id = (TextView) view
+				.findViewById(R.id.project_cost_getsheet_resourceid);
+		viewHolder.existing_cost = (TextView) view
+				.findViewById(R.id.project_cost_getsheet_existingcost);
 
-			viewHolder.total_cost = (TextView) view
-					.findViewById(R.id.project_cost_getsheet_totalprice);
-			viewHolder.quantity = (EditText) view
-					.findViewById(R.id.project_cost_getsheet_quantity);
+		viewHolder.total_cost = (TextView) view
+				.findViewById(R.id.project_cost_getsheet_totalprice);
+		viewHolder.quantity = (EditText) view
+				.findViewById(R.id.project_cost_getsheet_quantity);
 
-			viewHolder.unit_price = (EditText) view
-					.findViewById(R.id.project_cost_getsheet_uitprice);
+		viewHolder.unit_price = (EditText) view
+				.findViewById(R.id.project_cost_getsheet_uitprice);
 
-			viewHolder.checkboxstatus = (CheckBox) view
-					.findViewById(R.id.approve_travel_details_checkbox);
+		viewHolder.checkboxstatus = (CheckBox) view
+				.findViewById(R.id.approve_travel_details_checkbox);
+		if (arraylistdata.get(position).getResourceCode().equals("0")) {
 
+			viewHolder.checkboxstatus.setChecked(true);
+			viewHolder.checkboxstatus.setEnabled(false);
+			viewHolder.quantity.setEnabled(false);
+			viewHolder.unit_price.setEnabled(false);
+			arraylistdata.get(position).setCheckboxstatus(true);
+		
+		} else {
+
+			viewHolder.checkboxstatus.setEnabled(true);
 			viewHolder.checkboxstatus
 					.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
@@ -103,84 +112,97 @@ public class Project_Cost_Get_Sheet_Adapter extends BaseAdapter {
 
 						}
 					});
+		}
+		viewHolder.quantity.addTextChangedListener(new TextWatcher() {
 
-			viewHolder.quantity.addTextChangedListener(new TextWatcher() {
+			@Override
+			public void onTextChanged(CharSequence arg0, int arg1, int arg2,
+					int arg3) {
+				viewHolder.total_cost.setText(addNumbers(viewHolder));
+				arraylistdata.get(position).setTatalcost(addNumbers(viewHolder));
 
-				@Override
-				public void onTextChanged(CharSequence arg0, int arg1,
-						int arg2, int arg3) {
-					viewHolder.total_cost.setText(addNumbers(viewHolder));
-					arraylistdata.get(position).setTatalcost(addNumbers(viewHolder));
-					
-				}
+			}
 
-				@Override
-				public void beforeTextChanged(CharSequence arg0, int arg1,
-						int arg2, int arg3) {
+			@Override
+			public void beforeTextChanged(CharSequence arg0, int arg1,
+					int arg2, int arg3) {
 
-				}
+			}
 
-				@Override
-				public void afterTextChanged(Editable arg0) {
+			@Override
+			public void afterTextChanged(Editable arg0) {
 
-					arraylistdata.get(position).setQantity(arg0.toString());
+				arraylistdata.get(position).setQantity(arg0.toString());
 
-				}
-			});
+			}
+		});
 
-			viewHolder.unit_price.addTextChangedListener(new TextWatcher() {
+		viewHolder.unit_price.addTextChangedListener(new TextWatcher() {
 
-				@Override
-				public void onTextChanged(CharSequence arg0, int arg1,
-						int arg2, int arg3) {
-					viewHolder.total_cost.setText(addNumbers(viewHolder));
-					arraylistdata.get(position).setTatalcost(addNumbers(viewHolder));
-				}
+			@Override
+			public void onTextChanged(CharSequence arg0, int arg1, int arg2,
+					int arg3) {
+				viewHolder.total_cost.setText(addNumbers(viewHolder));
+				arraylistdata.get(position)
+						.setTatalcost(addNumbers(viewHolder));
+			}
 
-				@Override
-				public void beforeTextChanged(CharSequence arg0, int arg1,
-						int arg2, int arg3) {
+			@Override
+			public void beforeTextChanged(CharSequence arg0, int arg1,
+					int arg2, int arg3) {
 
-				}
+			}
 
-				@Override
-				public void afterTextChanged(Editable arg0) {
+			@Override
+			public void afterTextChanged(Editable arg0) {
 
-					arraylistdata.get(position).setUnit_test(arg0.toString());
+				arraylistdata.get(position).setUnit_test(arg0.toString());
 
-				}
-			});
-		//	view.setTag(viewHolder);
-		//}
-		//ViewHolder viewholder = (ViewHolder) view.getTag();
+			}
+		});
+		
+		
 
-		viewHolder.resource_id.setText(arraylistdata.get(position).getResourceName());
+		viewHolder.resource_id.setText(arraylistdata.get(position)
+				.getResourceName());
 		viewHolder.quantity.setText(arraylistdata.get(position).getQantity());
-		viewHolder.unit_price.setText(arraylistdata.get(position).getUnit_test());
-		viewHolder.existing_cost.setText(arraylistdata.get(position).getExistingCost());
-		viewHolder.checkboxstatus.setChecked(arraylistdata.get(position).isCheckboxstatus());
-		viewHolder.total_cost.setText(arraylistdata.get(position).getTatalcost());
+		viewHolder.unit_price.setText(arraylistdata.get(position)
+				.getUnit_test());
+		viewHolder.existing_cost.setText(arraylistdata.get(position)
+				.getExistingCost());
+		viewHolder.checkboxstatus.setChecked(arraylistdata.get(position)
+				.isCheckboxstatus());
+		viewHolder.total_cost.setText(arraylistdata.get(position)
+				.getTatalcost());
 		return view;
 	}
 
 	private String addNumbers(ViewHolder viewHolder) {
-		int number1;
-		int number2;
-		if (viewHolder.quantity.getText().toString() != ""
-				&& viewHolder.quantity.getText().length() > 0) {
-			number1 = Integer
-					.parseInt(viewHolder.quantity.getText().toString());
-		} else {
-			number1 = 0;
+		double number1;
+		double number2;
+		double res=0;
+		String result = String.valueOf(res);
+		try {
+			if (viewHolder.quantity.getText().toString() != ""
+					&& viewHolder.quantity.getText().length() > 0) {
+				number1 = Double
+						.parseDouble(viewHolder.quantity.getText().toString());
+			} else {
+				number1 = 0;
+			}
+			if (viewHolder.unit_price.getText().toString() != ""
+					&& viewHolder.unit_price.getText().length() > 0) {
+				number2 =  Double
+						.parseDouble(viewHolder.unit_price.getText()
+						.toString());
+			} else {
+				number2 = 0;
+			}
+          result=Double.toString(number1 * number2);
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
-		if (viewHolder.unit_price.getText().toString() != ""
-				&& viewHolder.unit_price.getText().length() > 0) {
-			number2 = Integer.parseInt(viewHolder.unit_price.getText()
-					.toString());
-		} else {
-			number2 = 0;
-		}
-
-		return Integer.toString(number1 * number2);
+		
+		return result;
 	}
 }

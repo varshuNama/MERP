@@ -70,6 +70,7 @@
 
     <string name="approve_leave">Approve Leave</string>
     <string name="submit">Submit</string>
+    <string name="project_cost_report">Project Cost Report</string>
     <string name="edit">Edit</string>
     <string name="save">Save</string>
     <string name="name">Name</string>
@@ -98,7 +99,7 @@
     <!-- LeaveReport text -->
 
     <string name="for_the_year">For the Year</string>
-    <string name="month_year">Month-Year</string>
+    <string name="month_year">Month</string>
     <string name="earned_leave">Earned Leave</string>
     <string name="carry_forward">Carry Forward</string>
     <string name="leave_in_hand">Leave In Hand</string>
@@ -490,5 +491,11 @@
       <string name="total_cost">Total Cost</string>
       <string name="projected_costing_new">Projected Costing Edit</string>
       <string name="getData">GetData</string>
-
+  <string name="projcode">Proj Code</string>
+   <string name="proj_name">Proj Name</string>
+    <string name="projectedcost">Projected Cost</string>
+     <string name="prefwd">Pre Fwd Cost</string>
+      <string name="netcost">Net Projected Cost</string>
+      <string name="actualcost">ActualCost</string>
+      <string name="gap">GAP</string>
 </resources>

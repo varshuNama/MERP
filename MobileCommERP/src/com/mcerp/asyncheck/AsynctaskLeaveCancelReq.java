@@ -9,7 +9,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 
 import com.mcerp.connection.ConnectionDetector;
 import com.mcerp.gts.Accept_Training;
-import com.mcerp.main.LeaveCancealReq;
+import com.mcerp.livendtimesheet.LeaveCancealReq;
 import com.mcerp.main.NavigationActivity;
 import com.mcerp.model.LeaveCancealReqModelData;
 import com.mcerp.model.TrainingModelData;
@@ -42,6 +42,9 @@ public class AsynctaskLeaveCancelReq extends AsyncTask<String, String, String> {
 		pDialog = new SweetAlertDialog(act, SweetAlertDialog.PROGRESS_TYPE)
 				.setTitleText("Loading");
 		pDialog.show();
+		pDialog.setCancelable(false);
+		pDialog.setCanceledOnTouchOutside(false);
+
 
 	}
 

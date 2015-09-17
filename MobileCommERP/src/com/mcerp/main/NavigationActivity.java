@@ -38,15 +38,21 @@ import com.mcerp.assets.TransferAssets;
 import com.mcerp.asyncheck.AsyncTaskDataLogin;
 import com.mcerp.connection.ConnectionDetector;
 import com.mcerp.constant.Constant;
-import com.mcerp.fragments.ApplyLeave;
-import com.mcerp.fragments.Home;
 import com.mcerp.gts.Accept_Training;
 import com.mcerp.gts.Complete_Training;
 import com.mcerp.gts.Gts_View_Training_Report;
+import com.mcerp.livendtimesheet.ApplyLeave;
+import com.mcerp.livendtimesheet.ApproveLeave;
+import com.mcerp.livendtimesheet.ApproveTimeSheet;
+import com.mcerp.livendtimesheet.LeaveCancealReq;
+import com.mcerp.livendtimesheet.LeaveCancelation_ProjMgrApprova;
+import com.mcerp.livendtimesheet.LeaveReport;
+import com.mcerp.livendtimesheet.NewSendTimesheet;
+import com.mcerp.livendtimesheet.TimeSheetReport;
 import com.mcerp.model.HomeModel;
 import com.mcerp.notification.InboxNotificationActivity;
 import com.mcerp.notification.WriteNotificationFragment;
-import com.mcerp.projectedcosting.Projected_Costing_Edit_Frament;
+import com.mcerp.projectedcosting.Project_Costing_Report_Fragment;
 import com.mcerp.projectedcosting.Projected_New_Fragment;
 import com.mcerp.travel.ApproveTravelView;
 import com.mcerp.travel.NewTravel;
@@ -261,7 +267,7 @@ public class NavigationActivity extends FragmentActivity {
 					case 2:
 						if (connection.isConnectingToInternet()) {
 							Intent intent = new Intent(NavigationActivity.this,
-									ViewTimeSheet.class);
+									TimeSheetReport.class);
 							startActivity(intent);
 							finish();
 
@@ -280,8 +286,7 @@ public class NavigationActivity extends FragmentActivity {
 					switch (childPosition) {
 					case 0:
 						if (connection.isConnectingToInternet()) {
-							Intent intent = new Intent(NavigationActivity.this,
-									AcceptAssets.class);
+							Intent intent = new Intent(NavigationActivity.this,AcceptAssets.class);
 							startActivity(intent);
 							finish();
 						} else {
@@ -425,7 +430,7 @@ public class NavigationActivity extends FragmentActivity {
 					case 0:
 						if (connection.isConnectingToInternet()) {
 
-							fragment = new Projected_New_Fragment();
+							fragment = new Projected_New_Fragment("New");
 							titletext.setText("Projected Costing New");
 
 						} else {
@@ -436,7 +441,7 @@ public class NavigationActivity extends FragmentActivity {
 					case 1:
 						if (connection.isConnectingToInternet()) {
 
-							fragment = new Projected_Costing_Edit_Frament();
+							fragment = new Projected_New_Fragment("Edit");
 							titletext.setText("Edit Projected Costing");
 
 						} else {
@@ -446,7 +451,8 @@ public class NavigationActivity extends FragmentActivity {
 						break;
 					case 2:
 						if (connection.isConnectingToInternet()) {
-
+							fragment = new Project_Costing_Report_Fragment();
+							titletext.setText("Projected Costing Report");
 						} else {
 							alertForInternetNotAvail();
 						}
@@ -478,7 +484,7 @@ public class NavigationActivity extends FragmentActivity {
 						if (connection.isConnectingToInternet()) {
 
 							Intent i = new Intent(NavigationActivity.this,
-									ViewTimeSheet.class);
+									TimeSheetReport.class);
 
 							startActivity(i);
 
@@ -521,6 +527,14 @@ public class NavigationActivity extends FragmentActivity {
 
 							startActivity(i);
 
+						} else {
+							alertForInternetNotAvail();
+						}
+						break;
+					case 5:
+						if (connection.isConnectingToInternet()) {
+							fragment = new Project_Costing_Report_Fragment();
+							titletext.setText("Projected Costing Report");
 						} else {
 							alertForInternetNotAvail();
 						}
@@ -1068,6 +1082,5 @@ public class NavigationActivity extends FragmentActivity {
 			mDrawerLayout.closeDrawer(expListView);
 
 		}
-
 	}
 }

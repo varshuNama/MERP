@@ -41,6 +41,9 @@ public class AsyncTaskGts_View_Training_Report extends
 		pDialog = new SweetAlertDialog(context, SweetAlertDialog.PROGRESS_TYPE)
 				.setTitleText("Loading");
 		pDialog.show();
+		pDialog.setCancelable(false);
+		pDialog.setCanceledOnTouchOutside(false);
+
 
 	}
 

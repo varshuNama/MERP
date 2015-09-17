@@ -20,7 +20,7 @@ import com.mcerp.model.ProjectCostAfterEditSaveModel;
 
 public class Project_Cost_After_EditGet_Sheet_Adapter extends BaseAdapter {
 	SaveAfterEditGetSheetData context;
-	static double data = 0.0;
+	
 
 	public static ArrayList<ProjectCostAfterEditSaveModel> arraylistdata = new ArrayList<ProjectCostAfterEditSaveModel>();
 
@@ -80,6 +80,8 @@ public class Project_Cost_After_EditGet_Sheet_Adapter extends BaseAdapter {
 
 		viewHolder.checkboxstatus = (CheckBox) view
 				.findViewById(R.id.edit_approve_travel_details_checkbox);
+		
+
 
 		viewHolder.checkboxstatus
 				.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -97,6 +99,7 @@ public class Project_Cost_After_EditGet_Sheet_Adapter extends BaseAdapter {
 					}
 				});
 
+		
 		viewHolder.quantity.addTextChangedListener(new TextWatcher() {
 
 			@Override

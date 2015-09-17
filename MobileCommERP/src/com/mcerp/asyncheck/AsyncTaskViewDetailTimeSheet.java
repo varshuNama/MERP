@@ -11,8 +11,8 @@ import android.os.AsyncTask;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 import com.mcerp.connection.ConnectionDetector;
+import com.mcerp.livendtimesheet.TimeSheetReport;
 import com.mcerp.main.NavigationActivity;
-import com.mcerp.main.ViewTimeSheet;
 import com.mcerp.model.ViewTimeSheetModel;
 import com.mcerp.util.AppPreferences;
 
@@ -25,11 +25,11 @@ public class AsyncTaskViewDetailTimeSheet extends
 	SweetAlertDialog pDialog, dialog;
 	AppPreferences prefs;
 	ArrayList<ViewTimeSheetModel> reportdata;
-	ViewTimeSheet context;
+	TimeSheetReport context;
 	int flag = 0;
 	ConnectionDetector connectionDetector;
 
-	public AsyncTaskViewDetailTimeSheet(ViewTimeSheet con, String spinvalue,
+	public AsyncTaskViewDetailTimeSheet(TimeSheetReport con, String spinvalue,
 			String flag, String chk) {
 		super();
 		context = con;

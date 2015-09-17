@@ -82,6 +82,9 @@ public class InboxNotificationActivity extends Activity {
 			pDialog = new SweetAlertDialog(InboxNotificationActivity.this,
 					SweetAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
 			pDialog.show();
+			pDialog.setCancelable(false);
+			pDialog.setCanceledOnTouchOutside(false);
+
 
 		}
 

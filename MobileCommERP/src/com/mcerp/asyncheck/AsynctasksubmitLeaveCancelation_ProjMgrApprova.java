@@ -10,7 +10,7 @@ import android.os.AsyncTask;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 import com.mcerp.connection.ConnectionDetector;
-import com.mcerp.main.LeaveCancelation_ProjMgrApprova;
+import com.mcerp.livendtimesheet.LeaveCancelation_ProjMgrApprova;
 import com.mcerp.main.NavigationActivity;
 import com.mcerp.model.LeaveCancelation_ProjMgrApprova_Model;
 
@@ -78,6 +78,9 @@ public class AsynctasksubmitLeaveCancelation_ProjMgrApprova extends
 		pDialog = new SweetAlertDialog(context, SweetAlertDialog.PROGRESS_TYPE)
 				.setTitleText("Loading");
 		pDialog.show();
+		pDialog.setCancelable(false);
+		pDialog.setCanceledOnTouchOutside(false);
+
 	}
 
 	@Override

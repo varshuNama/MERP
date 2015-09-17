@@ -13,17 +13,17 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mcerp.asyncheck.AsyncTaskViewDetailTimeSheet;
+import com.mcerp.livendtimesheet.TimeSheetReport;
 import com.mcerp.main.R;
-import com.mcerp.main.ViewTimeSheet;
 import com.mcerp.model.ViewTimeSheetModel;
 
 public class ViewTimeSheetAdapter extends BaseAdapter {
 
-	ViewTimeSheet con;
+	TimeSheetReport con;
 	String flag;
 	ArrayList<ViewTimeSheetModel> arraylist = new ArrayList<ViewTimeSheetModel>();
 
-	public ViewTimeSheetAdapter(ViewTimeSheet context,
+	public ViewTimeSheetAdapter(TimeSheetReport context,
 			ArrayList<ViewTimeSheetModel> array, String check) {
 		super();
 		con = context;

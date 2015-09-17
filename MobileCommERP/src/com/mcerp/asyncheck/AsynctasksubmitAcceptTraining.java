@@ -85,6 +85,9 @@ public class AsynctasksubmitAcceptTraining extends
 		pDialog = new SweetAlertDialog(context, SweetAlertDialog.PROGRESS_TYPE)
 				.setTitleText("Loading");
 		pDialog.show();
+		pDialog.setCancelable(false);
+		pDialog.setCanceledOnTouchOutside(false);
+
 	}
 
 	@Override

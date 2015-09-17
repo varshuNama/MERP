@@ -1,6 +1,7 @@
 package com.mcerp.adapter;
 
 import java.util.ArrayList;
+
 import android.app.Activity;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -13,7 +14,8 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.TextView;
-import com.mcerp.main.LeaveCancealReq;
+
+import com.mcerp.livendtimesheet.LeaveCancealReq;
 import com.mcerp.main.R;
 import com.mcerp.model.LeaveCancealReqModelData;
 
